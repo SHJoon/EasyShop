@@ -57,4 +57,4 @@ def logout(request):
 
 def index(request):
 
-    return render(request, "index.html")
+    return render(request, "homepage.html")
