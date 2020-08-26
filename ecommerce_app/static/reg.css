@@ -38,12 +38,15 @@ header {
         color: #ffaa6d;
     }
 
+    header h1 {
+        font-size: 40px;
+    }
+
     header a {
         color: white;
         font-size: 18px;
     }
 
-/* styling for logged in header */
 #bar {
     justify-content: space-between;
 }
@@ -73,7 +76,7 @@ header {
         justify-content: space-between;
         margin-bottom: 10px;
     }
-
+    
     button {
         padding: 1px 8px;
         margin-left: 78px;
@@ -81,6 +84,7 @@ header {
 
 #column {
     width: 70%;
+    height: 540px;
     margin: auto;
     margin-top: 65px;
     padding: 33px;
@@ -88,11 +92,17 @@ header {
     box-shadow: 10px -2px 6px -5px #424b4c, -10px -2px 6px -5px #424b4c;
 }
 
+#welcome {
+    margin: 20px 0 0 30px;
+    color: #d77a61;
+    font-size: 44px;
+}
+    
 #container {
-    width: 850px;
+    width: 800px;
     margin: auto;
-    padding: 10px 0px 10px 25px;
-    margin-bottom: 40px;
+    padding: 40px 0px 40px 25px;
+    margin-top: -14px;
     display: flex;
     justify-content: center;
     border: 2px solid #19323c;
@@ -100,31 +110,14 @@ header {
     box-shadow: 8px 8px #334e58;
 }
 
-.section {
-    border: 2px solid #19323c;
-    border-radius: 2px;
-    margin: 10px;
-    width: 90%;
-    height: 160px;
-    display: flex;
-    box-shadow: 4px 4px #334e58;
-    color: #19323c;
-    text-align: justify;
+table {
+    border-spacing: 15px;
+    padding: 0px 40px;
 }
-    .desc {
-        padding: 15px;
-    }
-    .section img {
-        width: 45%;
-    }
-    .section h3, a {
-        font-size: 24px;
-        color: #19323c;
-        padding: 0px;
-    }
-    .section p {
-        line-height: 15px;
-    }
+
+#register button {
+    margin: 20px 0 0 160px;
+}
 
 #foot {
     margin-top: 60px;

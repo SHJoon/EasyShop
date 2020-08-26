@@ -8,75 +8,88 @@
     <!-- {% load static %}
     <link rel="stylesheet" href="{% static 'static/home.css' %}"> -->
     <link rel="stylesheet" type="text/css" href="static/home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="project_script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
-<header>
-    <h1>Welcome!</h1>
-    <p>
-        <a href="">Log In/Register</a>
-    </p>
-</header>
-<header id="logged">
-    <h1>Welcome [name]!</h1>
+<div id="wrapper">
+<header id="bar">
+    <img src="images/pngwave.png">
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">View Cart</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="#" class="header-link">Register</a></li>
+        <li id="login"><a href="#" class="header-link">Log In</a></li>
     </ul>
 </header>
+<!-- <header id="bar">
+    <img src="images/pngwave.png">
+    <ul>
+        <li><a href="#" class="header-link">Home</a></li>
+        <li><a href="#" class="header-link">View Cart</a></li>
+        <li><a href="#" class="header-link">Log Out</a></li>
+    </ul>
+</header> -->
 
 <body>
-    <div id="container">
-        <div id="left">
-            <div class="section">
-                <img src="static/images/image.png" alt="section-img">
-                <div class="desc">
-                    <h3>Section title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    <div id="log-form">
+        <form action="" method="POST">
+            <!-- {% csrf_token %} -->
+            <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
+            <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
+            <button>Log In</button>
+        </form>
+    </div>
+    <div id="column">
+        <div id="container">
+            <div id="left">
+                <div class="section">
+                    <img src="images/image.png" alt="section-img">
+                    <div class="desc">
+                        <h3><a href="">Section title</a></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="section">
+                    <img src="images/image.png" alt="section-img">
+                    <div class="desc">
+                        <h3><a href="">Section title</a></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="section">
+                    <img src="images/image.png" alt="section-img">
+                    <div class="desc">
+                        <h3><a href="">Section title</a></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
                 </div>
             </div>
-            <div class="section">
-                <img src="static/images/image.png" alt="section-img">
-                <div class="desc">
-                    <h3>Section title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <div id="right">
+                <div class="section">
+                    <img src="images/image.png" alt="section-img">
+                    <div class="desc">
+                        <h3><a href="">Section title</a></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
                 </div>
-            </div>
-            <div class="section">
-                <img src="static/images/image.png" alt="section-img">
-                <div class="desc">
-                    <h3>Section title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                <div class="section">
+                    <img src="images/image.png" alt="section-img">
+                    <div class="desc">
+                        <h3><a href="">Section title</a></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div id="right">
-            <div class="section">
-                <img src="static/images/image.png" alt="section-img">
-                <div class="desc">
-                    <h3>Section title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                </div>
-            </div>
-            <div class="section">
-                <img src="static/images/image.png" alt="section-img">
-                <div class="desc">
-                    <h3>Section title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                </div>
-            </div>
-            <div class="section">
-                <img src="static/images/image.png" alt="section-img">
-                <div class="desc">
-                    <h3>Section title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                <div class="section">
+                    <img src="images/image.png" alt="section-img">
+                    <div class="desc">
+                        <h3><a href="">Section title</a></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+</div>
 </body>
-<!-- <footer>
-    <div></div>
-</footer> -->
 
 </html>

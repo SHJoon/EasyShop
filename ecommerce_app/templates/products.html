@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items in [Category]</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'static/home.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="static/products.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="project_script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+</head>
+<div id="wrapper">
+    <header id="bar">
+        <img src="images/pngwave.png">
+        <ul>
+            <li><a href="#" class="header-link">Register</a></li>
+            <li id="login"><a href="#" class="header-link">Log In</a></li>
+        </ul>
+    </header>
+    <!-- <header id="bar">
+    <img src="images/pngwave.png">
+    <ul>
+        <li><a href="#" class="header-link">Home</a></li>
+        <li><a href="#" class="header-link">View Cart</a></li>
+        <li><a href="#" class="header-link">Log Out</a></li>
+    </ul>
+</header> -->
+
+    <body>
+        <div id="log-form">
+            <form action="" method="POST">
+                <!-- {% csrf_token %} -->
+                <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
+                <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
+                <button>Log In</button>
+            </form>
+        </div>
+        <div id="column">
+            <div id="title">
+                <h1>[Category Name]</h1>
+            </div>
+            <div id="container">
+                <div class="row">
+                    <div class="item">
+                        <img src="images/shirt.jpeg" class="img">
+                        <div class="fade">
+                            <p><a href="">See more</a></p>
+                        </div>
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/shirt.jpeg">
+                        <div class="item-desc">
+                            <h5><a href="">Item Name</a></h5>
+                            <p>$19.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+</body>
+
+</html>

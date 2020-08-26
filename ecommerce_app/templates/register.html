@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="project_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/reg.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+</head>
+<div id="wrapper">
+    <header id="bar">
+        <img src="images/pngwave.png">
+        <ul>
+            <li id="login"><a href="#" class="header-link">Log In</a></li>
+        </ul>
+    </header>
+
+    <body>
+        <div id="log-form">
+            <form action="" method="POST">
+                <!-- {% csrf_token %} -->
+                <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
+                <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
+                <button>Log In</button>
+            </form>
+        </div>
+        <div id="column">
+            <h1 class="greeting" id="welcome">Welcome!</h1>
+            <div id="container">
+                <!-- {% if messages %}
+        <ul>    
+            {% for message in messages %}    
+                <li class="messages" style="color: red">{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %} -->
+
+                <form id="register" action='/register' method="POST">
+                    <!-- {% csrf_token %} -->
+                    <h2>Register:</h2>
+                    <table>
+                        <tr>
+                            <td>First Name:</td>
+                            <td><input type="text" name="registered_first_name"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td><input type="text" name="registered_last_name"></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><input type="text" name="registered_email"></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input type="password" name="registered_password"></td>
+                        </tr>
+                        <tr>
+                            <td>Confirm Password:</td>
+                            <td><input type="password" name="registered_confirm_pw"></td>
+                        </tr>
+                    </table>
+                    <button id="register">Register</button>
+                </form>
+            </div>
+            <div id="foot">
+                <p>All Rights Reserved.</p>
+                <p>
+                    <a href="">FAQ</a> &#8226;
+                    <a href="">Privacy Policy</a> &#8226;
+                    <a href="">Contact Us</a>
+                </p>
+            </div>
+        </div>
+    </body>
+
+</div>
+
+</html>

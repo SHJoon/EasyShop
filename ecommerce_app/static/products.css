@@ -88,57 +88,81 @@ header {
     box-shadow: 10px -2px 6px -5px #424b4c, -10px -2px 6px -5px #424b4c;
 }
 
+#title {
+    width: 850px;
+    margin: auto;
+    padding: 10px 0px 15px 25px;
+    margin-bottom: 20px;
+    /* text-align: center; */
+    border: 2px solid #19323c;
+    border-radius: 2px;
+    /* box-shadow: 8px 8px #334e58; */
+}
+    #title h1 {
+        color: #d77a61;
+        text-shadow: 2px 2px 8px #bfc1c1, 1px 1px 2px white;
+    }
+
 #container {
     width: 850px;
     margin: auto;
-    padding: 10px 0px 10px 25px;
+    /* padding: 20px 0px 20px 25px; */
     margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
+    display: inline-block;
+    /* justify-content: center; */
     border: 2px solid #19323c;
     border-radius: 2px;
     box-shadow: 8px 8px #334e58;
 }
 
-.section {
-    border: 2px solid #19323c;
-    border-radius: 2px;
-    margin: 10px;
-    width: 90%;
-    height: 160px;
+.row {
     display: flex;
-    box-shadow: 4px 4px #334e58;
-    color: #19323c;
-    text-align: justify;
+    width: 100%;
+    margin-bottom: 20px;
 }
-    .desc {
-        padding: 15px;
-    }
-    .section img {
-        width: 45%;
-    }
-    .section h3, a {
-        font-size: 24px;
-        color: #19323c;
-        padding: 0px;
-    }
-    .section p {
-        line-height: 15px;
+
+.item {
+    width: 50%;
+    margin: 10px;
+}
+    .item img {
+        width: 100%;
+        height: 320px;
+        opacity: 1;
     }
 
-#foot {
-    margin-top: 60px;
-    color: #19323c;
-    font-size: 11px;
-    text-align: center;
+    .fade {
+        display: none;
+        opacity: .5;
+        background: white;
+        height: 320px;
+    }
+        .fade a {
+            font-family: Lora;
+            font-size: 20px;
+            color: black;
+            margin: 140px 0px 0px 44px;
+        }
+
+        .fade a:hover {
+            color: #ffaa6d;
+        }
+
+.item-desc {
+    width: 92%;
+    background: #334e58;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -4px;
 }
-    #foot a {
-        color: #19323c;
-        margin-left: -10px;
+    .item-desc p {
+        font-size: 14px;
     }
-    #foot a:hover {
-        color: #ffaa6d;
-    }
-    #foot p {
-        line-height: 6px;
+
+    .item-desc a {
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
     }
