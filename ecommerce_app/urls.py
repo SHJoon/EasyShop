@@ -6,5 +6,15 @@ urlpatterns = [
     path('register', views.register_user),
     path('login', views.login_user),
     path('logout', views.logout),
-    path('', views.index),
+    path('', views.homepage),
+    path('products/<int:product_id>', views.view_product_info),
+
+    # URLs for admin
+    path('admin', views.admin),
+    path('admin/new', views.new_product),
+    path('admin/products', views.admin_products),
+    path('admin/orders', views.admin_orders),
+    path('admin/products/<int:product_id>/edit', views.admin_edit_product),
+    path('admin/products/<int:product_id>/update', views.admin_update_product),
+    path('admin/products/<int:product_id>/delete', views.admin_delete_product),
 ]

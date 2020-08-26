@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Products</h1>
+        <a href="/admin/new">Upload a new product</a>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Desc</th>
+                <th>Categories</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in all_products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.description }}</td>
+                <td>
+                    {% for cat in product.categories.all %}
+                    {{ cat.category }},
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="/admin/products/{{product.id}}/edit">Edit</a>|
+                    <a href="/admin/products/{{product.id}}/delete">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% for product in all_products %}
+        <img src="{{ product.img.url }}">
+        {% endfor %}
+    </div>
+</body>
+</html>

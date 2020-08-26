@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a new catalog</title>
+</head>
+<body>
+    <div id="container">
+        <form method=POST enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <p>Category:</p>
+            <div>
+            {% for category in all_categories %}
+                <input id="cat" type="checkbox" name="category" value={{category.id}}>
+                <label for="cat">{{ category.category }}</label>
+            {% endfor %}
+            </div>
+            <p>Other Category:</p>
+            <input type="text" name="other_cat">
+            <button>Upload this</button>
+        </form>
+    </div>
+</body>
+</html>

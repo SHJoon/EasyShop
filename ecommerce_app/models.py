@@ -19,29 +19,26 @@ class Product(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True) 
     updated_at = models.DateTimeField(auto_now=True) 
-    # img = models.ImageField()
+    img = models.ImageField(upload_to='')
 
 class Review(models.Model):
+    value = models.IntegerField()
+    description = models.TextField()
     product = models.ForeignKey(
         Product,
         related_name="reviews",
         on_delete=models.CASCADE
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class Cart(models.Model):
-    products = models.ManyToManyField(
-        Product,
-        related_name="carts",
-    )
     user = models.ForeignKey(
         User,
-        related_name="carts",
+        related_name="reviews",
         on_delete=models.CASCADE
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Order(models.Model):
     quantity_ordered = models.IntegerField()
+    total_price = models.DecimalField(decimal_places=2, max_digits=5)
 
     purchased_user = models.ForeignKey(
         User,
@@ -54,3 +51,14 @@ class Order(models.Model):
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Cart(models.Model):
+    orders = models.ManyToManyField(
+        Order,
+        related_name="carts",
+    )
+    user = models.ForeignKey(
+        User,
+        related_name="carts",
+        on_delete=models.CASCADE
+    )
