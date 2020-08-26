@@ -89,17 +89,19 @@ def view_products(request, category_id):
     return render(request, "", context)
 
 def view_product_info(request, product_id):
+    this_product = Product.objects.get(id=product_id)
     context={
-        "this_product": Product.objects.get(id=product_id)
+        "this_product": this_product,
+        "all_reviews": this_product.reviews.all()
     }
-    return render(request, "", context)
+    return render(request, "product-info.html", context)
 
 def post_review(request):
     logged_in_user: User.objects.get(id=request.session['user_id'])
     
     add_review = Review.objects.create(
         user = current_user,
-        post=request.POST["post"]
+        post = request.POST["post"]
     )
     return redirect("")
 
@@ -134,6 +136,9 @@ def new_product(request):
             new_prod = form.save()
             for cat_id in request.POST.getlist('category'):
                 new_prod.categories.add(Category.objects.get(id=cat_id))
+            if request.POST['other_cat'] != "":
+                other_cat = Category.objects.create(category=request.POST['other_cat'])
+                new_prod.categories.add(other_cat)
             return redirect("/admin")
     
     else:

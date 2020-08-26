@@ -8,9 +8,10 @@
 <body>
     <div id="container">
         <h1>Products</h1>
-        <a href="">Upload a new product</a>
+        <a href="/admin/new">Upload a new product</a>
         <table>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Desc</th>
@@ -19,6 +20,7 @@
             </tr>
             {% for product in all_products %}
             <tr>
+                <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.description }}</td>
@@ -34,6 +36,10 @@
             </tr>
             {% endfor %}
         </table>
+
+        {% for product in all_products %}
+        <img src="{{ product.img.url }}">
+        {% endfor %}
     </div>
 </body>
 </html>

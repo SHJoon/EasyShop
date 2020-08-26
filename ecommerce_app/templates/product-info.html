@@ -25,39 +25,52 @@
 
 <body>
 
-    <div>
+    <div id="container">
         <!-- push submit button to post a review -->
-        <form action="" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="" value="{{}}">
+        <div id="product-info">
+            <img src="{{ this_product.img.url }}" alt='product-pic'>
+            <div id="product-desc">
+                <h2>{{ this_product.name }}</h2>
+                <p>{{ this_product.description }}</p>
+            </div>
+        </div>
 
-            <!-- product image  -->
-            <div></div>
-
-            <!-- product name -->
-            <div>{{this_product.name}}</div>
-
-            <!-- product description -->
-            <div>{{this_product.description}}</div>
-            
-            <!-- product rate -->
-            <div></div>
-            <select name="rate">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+        <form id="review" action="" method=POST>
+            <select name="review_val">
+                <option value=1>&#11088 </option>
+                <option value=2>&#11088 &#11088</option>
+                <option value=3>&#11088 &#11088 &#11088</option>
+                <option value=4>&#11088 &#11088 &#11088 &#11088</option>
+                <option value=5>&#11088 &#11088 &#11088 &#11088 &#11088</option>
             </select>
-            
-            <!-- product review -->
-            <div>Review</div>
-            <textarea name="review" cols='60' rows='3'></textarea>
-            
-            <button>Submit</button>
-
-            <div>List of Reviews</div>
+            <input id="review-detail" type="text" name="review">
+            {% if user_id in request.session %}
+            <button>Submit Review</button> 
+            {% else %}
+            <p style="color:red">You must be logged in to leave a review!</p>
+            {% endif %}
         </form>
+
+        <ul>
+        {% for review in all_reviews %}
+            <li class="each-review">
+                <p>{{ review.user.first_name }} {{ review.user.last_name }}: {{ review.description }}</p>
+                {% if review.value == 1 %}
+                <p>&#11088</p>
+                {% elif review.value == 2 %}
+                <p>&#11088 &#11088</p>
+                {% elif review.value == 3 %}
+                <p>&#11088 &#11088 &#11088</p>
+                {% elif review.value == 4 %}
+                <p>&#11088 &#11088 &#11088 &#11088</p>
+                {% else %}
+                <p>&#11088 &#11088 &#11088 &#11088 &#11088</p>
+                {% endif %}
+            </li>
+        {% empty %}
+        <p>No review for this product yet!</p>
+        {% endfor %}
+        </ul>
     </div>
 </body>
 </html>

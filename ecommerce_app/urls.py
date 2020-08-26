@@ -7,6 +7,7 @@ urlpatterns = [
     path('login', views.login_user),
     path('logout', views.logout),
     path('', views.homepage),
+    path('products/<int:product_id>', views.view_product_info),
 
     # URLs for admin
     path('admin', views.admin),

@@ -23,8 +23,14 @@ class Product(models.Model):
 
 class Review(models.Model):
     value = models.IntegerField()
+    description = models.TextField()
     product = models.ForeignKey(
         Product,
+        related_name="reviews",
+        on_delete=models.CASCADE
+    )
+    user = models.ForeignKey(
+        User,
         related_name="reviews",
         on_delete=models.CASCADE
     )
