@@ -1,0 +1,38 @@
+// 1. to download the repository,
+git clone {{ repository URL }}
+
+# example: 
+git clone https://github.com/SHJoon/e-commerce.git
+
+
+
+
+// 2. To check which branch you're on,
+git branch
+
+// 3. To access other branches other than master
+git checkout {{ branch_name }}
+
+# example:
+To view "howard" branch
+git checkout howard
+
+
+
+// 4. If there are changes made on the website, and you want to bring that to your local file,
+git checkout {{ branch_name }}
+git pull
+
+
+
+// 5. To upload your changes to GitHub:
+git add --all 
+
+OR, 
+
+git add {{ file_name }}  --> git add git_note.txt       OR      git add .
+
+
+git commit -m "Comment goes in here"
+
+git push
