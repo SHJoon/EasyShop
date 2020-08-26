@@ -86,13 +86,13 @@ def view_products(request, category_id):
         "all_products": category.products.all()
     }
 
-    return render(request, "", context)
+    return render(request, "indie-categ.html", context)
 
 def view_product_info(request, product_id):
     context={
         "this_product": Product.objects.get(id=product_id)
     }
-    return render(request, "", context)
+    return render(request, "product-info.html", context)
 
 def post_review(request):
     logged_in_user: User.objects.get(id=request.session['user_id'])
