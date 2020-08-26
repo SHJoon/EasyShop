@@ -26,11 +26,12 @@ git pull
 
 
 // 5. To upload your changes to GitHub:
-git add --all 
-
+git add --all
+OR, 
+git add .
 OR, 
 
-git add {{ file_name }}  --> git add git_note.txt       OR      git add .
+git add {{ file_name }}  --> git add git_note.txt
 
 
 git commit -m "Comment goes in here"
