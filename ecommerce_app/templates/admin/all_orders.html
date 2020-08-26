@@ -13,6 +13,7 @@
                 <th>ID</th>
                 <th>Product</th>
                 <th>Quantity</th>
+                <th>Total Price</th>
                 <th>Purchased User</th>
                 <th>Purchased On</th>
             </tr>
@@ -21,6 +22,7 @@
                 <td>{{ order.id }}</td>
                 <td>{{ order.purchased_product.name }}</td>
                 <td>{{ order.quantity_ordered }}</td>
+                <td>{{ order.total_price }}</td>
                 <td>{{ order.purchased_user.first_name }} {{ order.purchased_user.last_name }}</td>
                 <td>{{ order.created_at }}</td>
             </tr>

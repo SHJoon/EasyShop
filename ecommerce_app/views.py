@@ -179,6 +179,11 @@ def admin_update_product(request, product_id):
 
     return redirect('/admin/products')
 
+def admin_delete_product(request, product_id):
+    Product.objects.get(id=product_id).delete()
+
+    return redirect("/admin/products")
+
 
 def process(request):
 

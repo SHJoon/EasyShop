@@ -32,6 +32,7 @@ class Review(models.Model):
 
 class Order(models.Model):
     quantity_ordered = models.IntegerField()
+    total_price = models.DecimalField(decimal_places=2, max_digits=5)
 
     purchased_user = models.ForeignKey(
         User,
