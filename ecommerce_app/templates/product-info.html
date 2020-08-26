@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Info</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<header>
+    <h1>Welcome!</h1>
+    <p>
+        <a href="">Log In/Register</a>
+    </p>
+</header>
+<header id="logged">
+    <h1>Welcome [name]!</h1>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">View Cart</a></li>
+        <li><a href="#">Log Out</a></li>
+    </ul>
+</header>
+
+<body>
+
+    <div>
+        <!-- push submit button to post a review -->
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="" value="{{}}">
+
+            <!-- product image  -->
+            <div></div>
+
+            <!-- product name -->
+            <div>{{this_product.name}}</div>
+
+            <!-- product description -->
+            <div>{{this_product.description}}</div>
+            
+            <!-- product rate -->
+            <div></div>
+            <select name="rate">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            
+            <!-- product review -->
+            <div>Review</div>
+            <textarea name="review" cols='60' rows='3'></textarea>
+            
+            <button>Submit</button>
+
+            <div>List of Reviews</div>
+        </form>
+    </div>
+</body>
+</html>

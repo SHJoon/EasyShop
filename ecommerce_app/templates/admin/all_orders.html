@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Orders</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Purchased User</th>
+                <th>Purchased On</th>
+            </tr>
+            {% for order in all_orders reversed %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.purchased_product.name }}</td>
+                <td>{{ order.quantity_ordered }}</td>
+                <td>{{ order.purchased_user.first_name }} {{ order.purchased_user.last_name }}</td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

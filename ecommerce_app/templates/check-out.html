@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Check Out Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+    <body>
+
+        <h2>Check Out Form</h2>
+        <div id="check_form">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div><label>First Name:</label>
+                    <input type="text" name="first_name">
+                </div>
+
+                <div><label>Last Name:</label>
+                    <input type="text" name="last_name">
+                </div>
+
+                <div><label>Address:</label>
+                    <input type="text" name="address">
+                </div>
+                
+                <div><label>Card #:</label>
+                    <input type="text" name="card_num">
+                </div>
+                
+                <div><label>Billing Address:</label>
+                    <textarea name="bill_address" cols='60' rows='1'></textarea>
+                </div>
+                
+                <button>Proceed to Check Out</button>
+            </form>
+        </div>
+
+        <div id="your_cart">
+
+        </div>
+    </body>
+</html>

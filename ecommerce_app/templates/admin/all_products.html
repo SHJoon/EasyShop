@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Products</h1>
+        <a href="">Upload a new product</a>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Desc</th>
+                <th>Categories</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in all_products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.description }}</td>
+                <td>
+                    {% for cat in product.categories.all %}
+                    {{ cat.category }},
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="">Edit</a>|
+                    <a href="">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
