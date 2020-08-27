@@ -88,7 +88,7 @@ class Cart(models.Model):
     quantity_in_cart = models.IntegerField()
     total_price = models.DecimalField(decimal_places=2, max_digits=5)
 
-    product = models.OneToOneField(
+    product = models.ForeignKey(
         Product,
         related_name = "cart",
         on_delete=models.CASCADE

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items in {{ category.category }}</title>
-    <!-- {% load static %}
+    {% load static %}
     <link rel="stylesheet" href="{% static 'static/home.css' %}"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static 'project_script.js' %}"></script>-->
+    <script src="{% static 'project_script.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="/static/products.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="static/project_script.js"></script>
@@ -50,11 +50,8 @@
                     {% for product in category.products.all %}
                     <div class="item">
                         <img src="{{ product.img.url }}" class="img">
-                        <div class="fade">
-                            <p><a href="/products/{{ category.id }}/{{ product.id }}">See more</a></p>
-                        </div>
                         <div class="item-desc">
-                            <h5><a href="">{{product.name}}</a></h5>
+                            <h5><a href="/products/{{ category.id }}/{{ product.id }}">{{product.name}}</a></h5>
                             <p>${{product.price}}</p>
                         </div>
                     </div>

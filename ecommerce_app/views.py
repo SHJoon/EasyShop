@@ -5,6 +5,7 @@ from .models import *
 from .forms import ProductForm
 import bcrypt
 
+admin_id = [1,2,3]
 # Create your views here.
 def login_index(request):
 
@@ -58,9 +59,13 @@ def logout(request):
 
 # Function to display the main page
 def homepage(request):
+    is_admin=False
+    if "user_id" in request.session:
+        if request.session["user_id"] in admin_id:
+            is_admin=True
     context = {
-        "all_categories": Category.objects.all()
-        
+        "all_categories": Category.objects.all(),
+        "is_admin": is_admin
     }
     return render(request, "homepage.html", context)
 
@@ -120,7 +125,8 @@ def add_to_cart(request, category_id, product_id):
     return redirect(f"/cart")
 
 def cart(request):
-    all_carts = Cart.objects.all()
+    logged_user = User.objects.get(id=request.session['user_id'])
+    all_carts = Cart.objects.filter(user = logged_user)
     total_sum = 0
     for item in all_carts:
         total_sum += item.total_price
