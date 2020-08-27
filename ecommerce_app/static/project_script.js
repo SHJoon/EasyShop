@@ -6,5 +6,6 @@ $(document).ready(function () {
 
     $("#log-form").mouseleave(function () {
         $("#log-form").fadeOut(400);
-    });    
+    }); 
+    
 });
