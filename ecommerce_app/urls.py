@@ -7,7 +7,13 @@ urlpatterns = [
     path('login', views.login_user),
     path('logout', views.logout),
     path('', views.homepage),
-    path('products/<int:product_id>', views.view_product_info),
+    path('products/<int:category_id>', views.view_products),
+    path('products/<int:category_id>/<int:product_id>', views.view_product_info),
+    path('products/<int:category_id>/<int:product_id>/review', views.post_review),
+    path('cart', views.cart),
+    path('cart/update/<int:cart_id>', views.update_cart),
+    path('cart/remove/<int:cart_id>', views.delete_cart),
+    path('cart/checkout', views.checkout),
 
     # URLs for admin
     path('admin', views.admin),

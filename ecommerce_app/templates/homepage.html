@@ -13,10 +13,14 @@
     <!-- <link rel="stylesheet" type="text/css" href="static/home.css"> -->
 >>>>>>> Fixed image routing
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<<<<<<< HEAD
     <script src="{% static 'project_script.js' %}"></script>
     <!-- <link rel="stylesheet" type="text/css" href="static/home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="static/project_script.js"></script> -->
+=======
+    <script src="static/project_script.js"></script>
+>>>>>>> Added most of the links for the project. Need to test with database
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
@@ -47,6 +51,7 @@
     </div>
     <div id="column">
         <div id="container">
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <div class="section">
                     <img src="static/images/image.png" alt="section-img">
@@ -94,15 +99,23 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
+=======
+            <div id="category-list">
+                {% for category in all_categories %}
+>>>>>>> Added most of the links for the project. Need to test with database
                 <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
+                    <img src="{{ category.products.first.img.url }}" alt="{{ category.category }}">
                     <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <h3><a href="">{{ category.category }}</a></h3>
                     </div>
 >>>>>>> Fixed image routing
                 </div>
+<<<<<<< HEAD
             
+=======
+                {% endfor %}
+            </div>
+>>>>>>> Added most of the links for the project. Need to test with database
         </div>
     </div>
     

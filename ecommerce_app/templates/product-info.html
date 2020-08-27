@@ -72,18 +72,21 @@
         <ul>
         {% for review in all_reviews %}
             <li class="each-review">
-                <p>{{ review.user.first_name }} {{ review.user.last_name }}: {{ review.description }}</p>
-                {% if review.value == 1 %}
-                <p>&#11088</p>
-                {% elif review.value == 2 %}
-                <p>&#11088 &#11088</p>
-                {% elif review.value == 3 %}
-                <p>&#11088 &#11088 &#11088</p>
-                {% elif review.value == 4 %}
-                <p>&#11088 &#11088 &#11088 &#11088</p>
-                {% else %}
-                <p>&#11088 &#11088 &#11088 &#11088 &#11088</p>
-                {% endif %}
+                <p>
+                    {{ review.user.first_name }} {{ review.user.last_name }}
+                    {% if review.value == 1 %}
+                    <span>&#11088</span>
+                    {% elif review.value == 2 %}
+                    <span>&#11088 &#11088</span>
+                    {% elif review.value == 3 %}
+                    <span>&#11088 &#11088 &#11088</span>
+                    {% elif review.value == 4 %}
+                    <span>&#11088 &#11088 &#11088 &#11088</span>
+                    {% else %}
+                    <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
+                    {% endif %}
+                </p>
+                <p>{{ review.description }}</p>
             </li>
         {% empty %}
         <p>No reviews for this product yet!</p>
