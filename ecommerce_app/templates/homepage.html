@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="{% static 'home.css' %}">
     <!-- <link rel="stylesheet" type="text/css" href="static/home.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="project_script.js"></script>
+    <script src="static/project_script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
 <header id="bar">
-    <img src="images/pngwave.png">
+    <img src="static/images/pngwave.png">
     <ul>
         <li><a href="#" class="header-link">Register</a></li>
         <li id="login"><a href="#" class="header-link">Log In</a></li>
@@ -40,51 +40,15 @@
     </div>
     <div id="column">
         <div id="container">
-            <div id="left">
+            <div id="category-list">
+                {% for category in all_categories %}
                 <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
+                    <img src="{{ category.products.first.img.url }}" alt="{{ category.category }}">
                     <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <h3><a href="">{{ category.category }}</a></h3>
                     </div>
                 </div>
-                <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-                <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </div>
-            <div id="right">
-                <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-                <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-                <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <div class="desc">
-                        <h3><a href="">Section title</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

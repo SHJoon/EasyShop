@@ -53,9 +53,13 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Cart(models.Model):
-    orders = models.ManyToManyField(
-        Order,
-        related_name="carts",
+    quantity_in_cart = models.IntegerField()
+    total_price = models.IntegerField()
+
+    product = models.OneToOneField(
+        Product,
+        related_name = "cart",
+        on_delete=models.CASCADE
     )
     user = models.ForeignKey(
         User,

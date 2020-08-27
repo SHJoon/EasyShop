@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
     <body>
-
+        <p>Total Charge: {{ total_sum }}</p>
         <h2>Check Out Form</h2>
         <div id="check_form">
             <form action="" method="POST">
@@ -26,8 +26,13 @@
                     <input type="text" name="address">
                 </div>
                 
-                <div><label>Card #:</label>
+                <div>
+                    <label>Card #:</label>
                     <input type="text" name="card_num">
+                    <label>Expiration:</label>
+                    <input type="text" name="exp">
+                    <label>CVV:</label>
+                    <input type="text" name="cvv">
                 </div>
                 
                 <div><label>Billing Address:</label>
@@ -36,10 +41,6 @@
                 
                 <button>Proceed to Check Out</button>
             </form>
-        </div>
-
-        <div id="your_cart">
-
         </div>
     </body>
 </html>
