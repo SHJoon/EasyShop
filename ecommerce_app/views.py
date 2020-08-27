@@ -39,12 +39,12 @@ def register_user(request):
 
 # Functions for handling login
 def login_user(request):
-    user_list = User.objects.filter(email=request.POST['login_email'])
+    user_list = User.objects.filter(email=request.POST['email'])
     if len(user_list) == 0:
         messages.error(request, "Please check your email/password")
         return redirect("/login_index")
 
-    if not bcrypt.checkpw(request.POST['login_password'].encode(), user_list[0].password.encode()):
+    if not bcrypt.checkpw(request.POST['password'].encode(), user_list[0].password.encode()):
         print("failed password")
         messages.error(request, "Please check your email/password")
         return redirect("/login_index")
@@ -67,16 +67,32 @@ def homepage(request):
 def view_products(request, category_id):
     category = Category.objects.get(id=category_id)
     context = {
-        "all_products": category.products.all()
+        "category": category
     }
 
     return render(request, "products.html", context)
 
 def view_product_info(request, category_id, product_id):
     this_product = Product.objects.get(id=product_id)
+    try:
+        User.objects.get(id=request.session['user_id'])
+        is_logged_in = True
+    except:
+        is_logged_in = False
+    
+    sum = 0
+    if len(this_product.reviews.all()) != 0:
+        for review in this_product.reviews.all():
+            sum += review.value
+        avg_review = round((sum) / len(this_product.reviews.all()))
+    else:
+        avg_review = 0
+
     context={
         "this_product": this_product,
-        "all_reviews": this_product.reviews.all()
+        "avg_review": avg_review,
+        "is_logged_in": is_logged_in,
+        "category_id": category_id
     }
     return render(request, "product-info.html", context)
 
@@ -87,7 +103,21 @@ def post_review(request, category_id, product_id):
         product = Product.objects.get(id=product_id),
         user = User.objects.get(id=request.session['user_id'])
     )
-    return redirect(f"/products/{product_id}")
+    return redirect(f"/products/{category_id}z/{product_id}")
+
+def add_to_cart(request, category_id, product_id):
+    product = Product.objects.get(id=product_id)
+    print(request.POST['quantity'])
+    print(product.price)
+    total_price = float(request.POST['quantity']) * float(product.price)
+    print(total_price)
+    Cart.objects.create(
+        quantity_in_cart = request.POST['quantity'],
+        total_price = total_price,
+        product = product,
+        user = User.objects.get(id=request.session['user_id']),
+    )
+    return redirect(f"/cart")
 
 def cart(request):
     all_carts = Cart.objects.all()
@@ -104,6 +134,9 @@ def cart(request):
 def update_cart(request, cart_id):
     cart = Cart.objects.get(id=cart_id)
     cart.quantity_in_cart = request.POST["quantity"]
+    cart.total_price = float(cart.quantity_in_cart) * float(cart.product.price)
+
+    cart.save()
 
     return redirect("/cart")
 
