@@ -55,23 +55,37 @@ def login_user(request):
 
 def logout(request):
     request.session.clear()
-    return redirect("/login_index")
+    return redirect("/")
 
 # Function to display the main page
 def homepage(request):
-    is_admin=False
-    if "user_id" in request.session:
+    try:
+        User.objects.get(id=request.session['user_id'])
+        is_logged_in = True
+    except:
+        is_logged_in = False
+    is_admin = False
+    if is_logged_in:
         if request.session["user_id"] in admin_id:
             is_admin=True
+
     context = {
         "all_categories": Category.objects.all(),
-        "is_admin": is_admin
+        "is_logged_in": is_logged_in,
+        "is_admin": is_admin,
     }
     return render(request, "homepage.html", context)
 
 def view_products(request, category_id):
+    try:
+        User.objects.get(id=request.session['user_id'])
+        is_logged_in = True
+    except:
+        is_logged_in = False
+
     category = Category.objects.get(id=category_id)
     context = {
+        "is_logged_in": is_logged_in,
         "category": category
     }
 
@@ -97,7 +111,7 @@ def view_product_info(request, category_id, product_id):
         "this_product": this_product,
         "avg_review": avg_review,
         "is_logged_in": is_logged_in,
-        "category_id": category_id
+        "category_id": category_id,
     }
     return render(request, "product-info.html", context)
 
@@ -108,7 +122,12 @@ def post_review(request, category_id, product_id):
         product = Product.objects.get(id=product_id),
         user = User.objects.get(id=request.session['user_id'])
     )
-    return redirect(f"/products/{category_id}z/{product_id}")
+    return redirect(f"/products/{category_id}/{product_id}")
+
+def delete_review(request, category_id, product_id, review_id):
+    Review.objects.get(id=review_id).delete()
+
+    return redirect(f"/products/{category_id}/{product_id}")
 
 def add_to_cart(request, category_id, product_id):
     product = Product.objects.get(id=product_id)
@@ -122,6 +141,10 @@ def add_to_cart(request, category_id, product_id):
     return redirect(f"/cart")
 
 def cart(request):
+    if "user_id" not in request.session:
+        messages.error(request, "You must be logged in to view that page.")
+        return redirect("/login_index")
+
     logged_user = User.objects.get(id=request.session['user_id'])
     all_carts = Cart.objects.filter(user = logged_user)
     total_sum = 0
@@ -129,10 +152,11 @@ def cart(request):
         total_sum += item.total_price
     context = {
         "total_sum": total_sum,
-        "all_carts": all_carts
+        "all_carts": all_carts,
+        "logged_user": logged_user,
     }
 
-    return render(request, "cart.html", context)
+    return render(request, "check-out.html", context)
 
 def update_cart(request, cart_id):
     cart = Cart.objects.get(id=cart_id)
@@ -149,16 +173,20 @@ def delete_cart(request, cart_id):
     return redirect("/cart")
 
 
-def checkout(request):
-    all_carts = Cart.objects.all()
-    total_sum = 0
-    for item in all_carts:
-        total_sum += item.total_price
-    context = {
-        "total_sum": total_sum
-    }
+# def checkout(request):
+#     if "user_id" not in request.session:
+#         messages.error(request, "You must be logged in to view that page.")
+#         return redirect("/")
 
-    return render(request, "check-out.html", context)
+#     all_carts = Cart.objects.all()
+#     total_sum = 0
+#     for item in all_carts:
+#         total_sum += item.total_price
+#     context = {
+#         "total_sum": total_sum
+#     }
+
+#     return render(request, "check-out.html", context)
 
 def process(request):
     logged_user = User.objects.get(id=request.session['user_id'])
@@ -177,32 +205,14 @@ def process(request):
     return redirect(f"/cart/success")
 
 def success(request):
+    if "user_id" not in request.session:
+        messages.error(request, "You must be logged in to view that page.")
+        return redirect("/")
+
     context={
         'num_items': request.session['count']
     }
     return render(request, "checkout-success.html", context)
-
-def order_comp(request, order_id):
-    this_order = Order.objects.get(id=order_id)
-
-    sum = 0
-    count = 0
-
-    all_orders = Order.objects.all()
-
-    for curr_order in all_orders:
-        sum += curr_order.total_price
-        count += curr_order.quantity_ordered
-
-    context ={
-        "total_charge": this_order.total_price,
-        "total_amadon_spent": sum,
-        "total_quantity_bought": count 
-    }
-
-    return render(request, "order-complete.html", context)
-
-
 
 
 # Functions relating to admins

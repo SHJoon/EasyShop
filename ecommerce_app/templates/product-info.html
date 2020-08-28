@@ -11,26 +11,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
+    {%if is_logged_in %}
     <header id="bar">
         <img src="/static/images/pngwave.png">
         <ul>
-            <li><a href="#" class="header-link">Register</a></li>
+            <li><a href="/" class="header-link">Home</a></li>
+            <li><a href="/cart" class="header-link">View Cart</a></li>
+            <li><a href="/logout" class="header-link">Log Out</a></li>
+            {% if is_admin %}
+            <li><a href="/admin" class="header-link">Admin Page</a></li>
+            {% endif %}
+        </ul>
+    </header>
+    {% else %}
+    <header id="bar">
+        <img src="/static/images/pngwave.png">
+        <ul>
+            <li><a href="/login_index" class="header-link">Register</a></li>
             <li id="login"><a href="#" class="header-link">Log In</a></li>
         </ul>
     </header>
-    <!-- <header id="bar">
-        <img src="images/pngwave.png">
-        <ul>
-            <li><a href="#" class="header-link">Home</a></li>
-            <li><a href="#" class="header-link">View Cart</a></li>
-            <li><a href="#" class="header-link">Log Out</a></li>
-        </ul>
-    </header> -->
+    {% endif %}
 
 <body>
     <div id="log-form">
-        <form action="" method="POST">
-            <!-- {% csrf_token %} -->
+        <form action="/login" method="POST">
+            {% csrf_token %}
             <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
             <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
             <button>Log In</button>
@@ -74,6 +80,21 @@
     </div>
         
 <div id="bottom">
+        <form id="add_to_cart" action="/products/{{ category_id }}/{{ this_product.id }}/add_to_cart" method=POST>
+            {% csrf_token %}
+            <label for="quantity">Select Quantity:</label>
+            <select id="quantity" name="quantity">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+            </select>
+            {% if is_logged_in %}
+            <button>Add to Cart</button>
+            {% else %}
+            <p>Please log in to add to cart!</p>
+            {% endif %}
+        </form>
+
         <form id="review" action="/products/{{ category_id }}/{{ this_product.id }}/review" method=POST>
             {% csrf_token %}
             <select name="review_val">
@@ -109,6 +130,9 @@
                     {% endif %}
                 </p>
                 <p>{{ review.description }}</p>
+                {% if is_logged_in and request.session.user_id == review.user.id %}
+                <a href="/products/{{category_id}}/{{this_product.id}}/review/{{review.id}}/delete" style="color:black">Delete</a>
+                {% endif %}
             </li>
         {% empty %}
         <p>No reviews for this product yet!</p>
