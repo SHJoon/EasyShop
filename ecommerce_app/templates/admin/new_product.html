@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload a new catalog</title>
+    <title>Admin upload a new product</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'admin.css' %}">
 </head>
 <body>
     <div id="container">
@@ -13,13 +15,14 @@
             <p>Category:</p>
             <div>
             {% for category in all_categories %}
-                <input id="cat" type="checkbox" name="category" value={{category.id}}>
-                <label for="cat">{{ category.category }}</label>
+                <p><input id="cat" type="checkbox" name="category" value={{category.id}}>
+                <label for="cat">{{ category.category }}</label></p>
             {% endfor %}
             </div>
             <p>Other Category:</p>
-            <input type="text" name="other_cat">
-            <button>Upload this</button>
+            <p><input type="text" name="other_cat"></p>
+            <p><button>Upload this</button></p>
+            <p><a href="/admin">Go back to admin</a></p>
         </form>
     </div>
 </body>
