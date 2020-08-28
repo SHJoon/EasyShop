@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Check Out Form</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Check Out</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="ecommerce_app/static/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
+<div id="wrapper">
+    <header id="bar">
+        <img src="/static/images/pngwave.png">
+        <ul>
+            <li><a href="#" class="header-link">Home</a></li>
+            <li><a href="#" class="header-link">Log Out</a></li>
+        </ul>
+    </header>
+
     <body>
+        <div id="column">
+            <div id="container">
+                <div id="checkout">
+                    <h2>Check Out Form</h2>
+                    <div id="check_form">
+                        <form action="" method="POST">
+                            <!-- {% csrf_token %} -->
+                            <!-- <div><label>First Name:</label>
+                                <input type="text" name="first_name">
+                            </div>
 
-        <h2>Check Out Form</h2>
-        <div id="check_form">
-            <form action="" method="POST">
-                {% csrf_token %}
-                <div><label>First Name:</label>
-                    <input type="text" name="first_name">
-                </div>
+                            <div><label>Last Name:</label>
+                                <input type="text" name="last_name">
+                            </div>
 
-                <div><label>Last Name:</label>
-                    <input type="text" name="last_name">
-                </div>
+                            <div><label>Address:</label>
+                                <input type="text" name="address">
+                            </div>
 
-                <div><label>Address:</label>
-                    <input type="text" name="address">
-                </div>
-                
-                <div><label>Card #:</label>
-                    <input type="text" name="card_num">
-                </div>
-                
-                <div><label>Billing Address:</label>
-                    <textarea name="bill_address" cols='60' rows='1'></textarea>
-                </div>
-                
-                <button>Proceed to Check Out</button>
-            </form>
-        </div>
+                            <div><label>Card #:</label>
+                                <input type="text" name="card_num">
+                            </div>
 
-        <div id="your_cart">
-
+                            <div><label>Billing Address:</label>
+                                <textarea name="bill_address" cols='60' rows='1'></textarea>
+                            </div> -->
+                            <table>
+                                <tr>
+                                    <td>First Name:</td>
+                                    <td><input type="text" name="registered_first_name"></td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name:</td>
+                                    <td><input type="text" name="registered_last_name"></td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td><input type="text" name="registered_email"></td>
+                                </tr>
+                                <tr>
+                                    <td>Password:</td>
+                                    <td><input type="password" name="registered_password"></td>
+                                </tr>
+                                <tr>
+                                    <td>Confirm Password:</td>
+                                    <td><input type="password" name="registered_confirm_pw"></td>
+                                </tr>
+                            </table>
+                            <button>Submit Order</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="cart">
+                    <!-- cart layout here -->
+                </div>
+            </div>
+            <div id="foot">
+                <p>All Rights Reserved.</p>
+                <p>
+                    <a href="">FAQ</a> &#8226;
+                    <a href="">Privacy Policy</a> &#8226;
+                    <a href="">Contact Us</a>
+                </p>
+            </div>
         </div>
     </body>
+
+</div>
+
 </html>

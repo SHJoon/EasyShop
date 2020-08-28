@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'project_script.js' %}"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="static/project_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/success.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+</head>
+<div id="wrapper">
+    <header id="bar">
+        <img src="images/pngwave.png">
+        <ul>
+            <li><a href="#" class="header-link">Home</a></li>
+            <li><a href="#" class="header-link">Log Out</a></li>
+        </ul>
+    </header>
+
+    <body>
+        <div id="column">
+            <h1 class="greeting">Thank you!</h1>
+            <div id="container">
+                <h2>Your order is being processed.</h2>
+                <p class="notice">Your order of <b>{{ number of items }} items</b> has been received!</p>
+                <p class="notice">Please allow 2-3 business days for your order to be processed.
+                    You will receive a confirmation email shortly. If you have any questions or concerns,
+                    please feel free to <a href="">contact us</a>.</p>
+                <p>Thank you for shopping with us!</p>
+
+            </div>
+            <div id="foot">
+                <p>All Rights Reserved.</p>
+                <p>
+                    <a href="">FAQ</a> &#8226;
+                    <a href="">Privacy Policy</a> &#8226;
+                    <a href="">Contact Us</a>
+                </p>
+            </div>
+        </div>
+    </body>
+
+</div>
+
+</html>
