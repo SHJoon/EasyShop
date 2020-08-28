@@ -112,10 +112,7 @@ def post_review(request, category_id, product_id):
 
 def add_to_cart(request, category_id, product_id):
     product = Product.objects.get(id=product_id)
-    print(request.POST['quantity'])
-    print(product.price)
     total_price = float(request.POST['quantity']) * float(product.price)
-    print(total_price)
     Cart.objects.create(
         quantity_in_cart = request.POST['quantity'],
         total_price = total_price,
@@ -151,6 +148,7 @@ def delete_cart(request, cart_id):
 
     return redirect("/cart")
 
+
 def checkout(request):
     all_carts = Cart.objects.all()
     total_sum = 0
@@ -163,23 +161,19 @@ def checkout(request):
     return render(request, "check-out.html", context)
 
 def process(request):
+    logged_user = User.objects.get(id=request.session['user_id'])
+    cart = Cart.objects.filter(user = logged_user)
 
-    product = Product.objects.get(id=int(request.POST["id"]))
-
-    quantity_from_form = int(request.POST["quantity"])
-    price_from_form = float(product.price)
-    total_charge = quantity_from_form * price_from_form
-    
-    print("Charging credit card...")
-    this_order = Order.objects.create(
-        quantity_ordered = quantity_from_form,
-        total_price = total_charge
+    for item in cart:
+        Order.objects.create(
+            quantity_ordered = item.quantity_in_cart,
+            total_price = item.total_price,
+            purchased_user = logged_user,
+            purchased_product = item.product
         )
-    
-    request.session["order_id"] = this_order.id
+        item.delete()
 
     return redirect(f"checkout/{this_order.id}")
-
 
 def order_comp(request, order_id):
     this_order = Order.objects.get(id=order_id)
