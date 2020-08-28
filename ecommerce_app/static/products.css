@@ -114,12 +114,13 @@ header {
 
 .row {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     margin-bottom: 20px;
 }
 
 .item {
-    width: 50%;
+    width: 260px;
     margin: 10px;
 }
     .item img {

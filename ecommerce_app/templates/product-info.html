@@ -14,7 +14,7 @@
 <div id="wrapper">
     {%if is_logged_in %}
     <header id="bar">
-        <img src="/static/images/pngwave.png">
+        <img src="static/images/pngwave.png" alt="logo">
         <ul>
             <li><a href="/" class="header-link">Home</a></li>
             <li><a href="/cart" class="header-link">View Cart</a></li>
@@ -26,7 +26,7 @@
     </header>
     {% else %}
     <header id="bar">
-        <img src="/static/images/pngwave.png">
+        <img src="static/images/pngwave.png" alt="logo">
         <ul>
             <li><a href="/login_index" class="header-link">Register</a></li>
             <li id="login"><a href="#" class="header-link">Log In</a></li>
@@ -49,21 +49,21 @@
                 <div id="product-info">
                     <img src="{{ this_product.img.url }}" alt='product-pic' id="product-img">
                     <div id="product-desc">
-                            <div id="stars">
-                                {% if avg_review == 1 %}
-                                <span>&#11088</span>
-                                {% elif avg_review == 2 %}
-                                <span>&#11088 &#11088</span>
-                                {% elif avg_review == 3 %}
-                                <span>&#11088 &#11088 &#11088</span>
-                                {% elif avg_review == 4 %}
-                                <span>&#11088 &#11088 &#11088 &#11088</span>
-                                {% elif avg_review == 5 %}
-                                <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
-                                {% endif %}
-                            </div>
+                        <h2>{{ this_product.name }}</h2>
                             <div id="top-desc">
-                                <h2>{{ this_product.name }}</h2>
+                                <div id="stars">
+                                    {% if avg_review == 1 %}
+                                    <span>&#11088</span>
+                                    {% elif avg_review == 2 %}
+                                    <span>&#11088 &#11088</span>
+                                    {% elif avg_review == 3 %}
+                                    <span>&#11088 &#11088 &#11088</span>
+                                    {% elif avg_review == 4 %}
+                                    <span>&#11088 &#11088 &#11088 &#11088</span>
+                                    {% elif avg_review == 5 %}
+                                    <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
+                                    {% endif %}
+                                </div>
                                 <h4>${{ this_product.price }}</h4>
                             </div>
                         <div id="desc">
@@ -119,10 +119,10 @@
                                 <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
                                 {% endif %}
                             </p>
-                            <p>{{ review.description }}</p>
+                            <p>{{ review.description }}
                             {% if is_logged_in and request.session.user_id == review.user.id %}
                             <a href="/products/{{category_id}}/{{this_product.id}}/review/{{review.id}}/delete"
-                                style="color:black">Delete</a>
+                                id="delete">Delete</a></p>
                             {% endif %}
                         </li>
                         {% empty %}

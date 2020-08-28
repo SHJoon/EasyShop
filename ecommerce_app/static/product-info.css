@@ -121,7 +121,7 @@ header {
 
     #product-desc h4 {
         color: #d77a61;
-        margin-top: 22px;
+        margin: 10px 0 4px 0;
         font-size: 18px;
     }
 
@@ -137,10 +137,13 @@ header {
 
     #desc {
         width: 90%;
-        height: 300px;
         border: 2px solid #19323c;
         border-radius: 2px;
         padding: 6px 15px;
+    }
+
+    #desc p {
+        height: 100px;
     }
 
     #desc select {
@@ -157,13 +160,11 @@ header {
 }
 
 #add_to_cart {
-    position: relative;
     bottom: 0;
 }
 
 #bottom {
     width: 80%;
-    height: 200px;
     border: 2px solid #19323c;
     border-radius: 2px;
     margin: 40px 10px 0px 40px;
@@ -194,4 +195,8 @@ header {
 }
     .each-review span {
         margin-left: 8px;
+    }
+
+    #delete {
+        color: #d77a61;
     }

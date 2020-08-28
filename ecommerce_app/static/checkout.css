@@ -111,7 +111,7 @@ header {
 }
 
 #checkout {
-    margin-left: -55px;
+    margin-left: -40px;
 }
 
 #form {
@@ -123,7 +123,7 @@ input {
     width: 155px;
 }
 
-button {
+#payment {
     margin: 15px 0 0 160px;
     color: #d77a61;
 }
@@ -151,16 +151,24 @@ button {
     #cart-list tr:nth-child(odd) {
         background: #e7ad99;
     }
-#update {
+
+#quantity {
     display: flex;
+    justify-content: start;
+    width: 220px;
 }
+    #quantity button {
+        margin-left: 20px;
+    }
 
 #quantity input {
     width: 20px;
+    height: 18px;
+    margin-left: 3px;
 }
 
 #total {
-    margin: 20px 0px 0px 310px;
+    margin: 20px 0px 0px 300px;
 }
 
 #foot {

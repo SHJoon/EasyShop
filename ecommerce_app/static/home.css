@@ -10,11 +10,11 @@
 }
 
 header {
-    width: 100%;
+    width: 93%;
     height: 35px;
     position: fixed;
     top: 0;
-    padding: 15px 160px 15px 0px;
+    padding: 15px 45px;
     display: flex;
     justify-content: space-between;
     color: white;
@@ -29,7 +29,8 @@ header {
     }
 
     .header-link {
-        margin-top: -8px;
+        margin-top: -14px;
+        margin-right: -8px;
         text-decoration: none;
         color: white;
     }
@@ -106,10 +107,10 @@ header {
     height: 160px;
     display: flex;
     color: #19323c;
-    text-align: justify;
 }
     .section img {
         width: 65%;
+        object-fit: contain;
     }
     .section h3, a {
         font-size: 28px;
