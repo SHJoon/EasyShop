@@ -9,6 +9,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'checkout.css' %}">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- <link rel="stylesheet" type="text/css" href="static/checkout.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
@@ -165,6 +166,73 @@
                 <label>CVV:</label>
                 <input type="text" name="cvv">
             </div>
+=======
+    <link rel="stylesheet" type="text/css" href="static/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+</head>
+<header id="bar">
+    <img src="/static/images/pngwave.png">
+    <ul>
+        <li><a href="/" class="header-link">Home</a></li>
+        <li><a href="/cart" class="header-link">View Cart</a></li>
+        <li><a href="/logout" class="header-link">Log Out</a></li>
+        {% if is_admin %}
+            <li><a href="/admin" class="header-link">Admin Page</a></li>
+        {% endif %}
+    </ul>
+</header>
+<body>
+    <p>Total Charge: {{ total_sum }}</p>
+    <h2>Check Out Form</h2>
+    <div id="check_form">
+        <div id="cart">
+            <h2>{{ logged_user.first_name }}'s Cart</h2>
+            <table id="cart-list">
+                {% for cart in all_carts %}
+                <tr>
+                    <td>{{ cart.product.name }}</td>
+                    <td>
+                        <form id="quantity" method=POST action='/cart/update/{{cart.id}}'>
+                            {% csrf_token %}
+                            <p>Quantity:<input type="number" name="quantity" value={{cart.quantity_in_cart}}></p>
+                            <button>Update quantity</button>
+                        </form>
+                    </td>
+                    <td><a href="/cart/remove/{{cart.id}}">Remove</a></td>
+                    <td>${{ cart.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <!-- two rows shown just for previewing design -->
+            <div id="total">
+                <p>Order total: ${{ total_sum }}</p>
+            </div>
+        </form>
+        <form action="/cart/process" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="total_sum" value={{ total_sum }}>
+        
+            <div><label>First Name:</label>
+                <input type="text" name="first_name">
+            </div>
+        
+            <div><label>Last Name:</label>
+                <input type="text" name="last_name">
+            </div>
+
+            <div><label>Address:</label>
+                <input type="text" name="address">
+            </div>
+            
+            <div>
+                <label>Card #:</label>
+                <input type="text" name="card_num">
+                <label>Expiration:</label>
+                <input type="text" name="exp">
+                <label>CVV:</label>
+                <input type="text" name="cvv">
+            </div>
+>>>>>>> bd3c9ee72dcc3202231371d32fea541ee1878cbc
             <button>Process Payment</button>
         </form>
         <div id="foot">
@@ -174,7 +242,10 @@
                 <a href="">Privacy Policy</a> &#8226;
                 <a href="">Contact Us</a>
             </p>
+<<<<<<< HEAD
 >>>>>>> Changed some functionality of the website
+=======
+>>>>>>> bd3c9ee72dcc3202231371d32fea541ee1878cbc
         </div>
     </div>
 </body>
