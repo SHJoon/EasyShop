@@ -154,10 +154,7 @@ button {
 #update {
     display: flex;
 }
-    #update button {
-        position: absolute;
-        top: 2px;
-    }
+
 #quantity input {
     width: 20px;
 }
