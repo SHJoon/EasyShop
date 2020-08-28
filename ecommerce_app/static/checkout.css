@@ -10,11 +10,11 @@
 }
 
 header {
-    width: 100%;
+    width: 93%;
     height: 35px;
     position: fixed;
     top: 0;
-    padding: 15px 160px 15px 0px;
+    padding: 15px 45px;
     display: flex;
     justify-content: space-between;
     color: white;
@@ -38,12 +38,15 @@ header {
         color: #ffaa6d;
     }
 
+    header h1 {
+        font-size: 40px;
+    }
+
     header a {
         color: white;
         font-size: 18px;
     }
 
-/* styling for logged in header */
 #bar {
     justify-content: space-between;
 }
@@ -51,6 +54,7 @@ header {
         display: inline-block;
         text-align: center;
         padding-left: 14px;
+        padding-top: 3px;
         margin: 4px;
         color: white;
         text-decoration: none;
@@ -72,7 +76,7 @@ header {
         justify-content: space-between;
         margin-bottom: 10px;
     }
-
+    
     button {
         padding: 1px 8px;
         margin-left: 78px;
@@ -80,6 +84,7 @@ header {
 
 #column {
     width: 70%;
+    height: 540px;
     margin: auto;
     margin-top: 65px;
     padding: 33px;
@@ -87,42 +92,71 @@ header {
     box-shadow: 10px -2px 6px -5px #424b4c, -10px -2px 6px -5px #424b4c;
 }
 
+.greeting {
+    margin: 20px 0 0 23px;
+    color: #d77a61;
+    font-size: 44px;
+}
+    
 #container {
-    width: 850px;
+    width: 800px;
     margin: auto;
-    padding: 10px 0px 10px 25px;
-    margin-bottom: 40px;
+    padding: 40px 0px;
+    margin-top: -13px;
+    display: flex;
+    justify-content: center;
     border: 2px solid #19323c;
     border-radius: 2px;
     box-shadow: 8px 8px #334e58;
 }
 
-.section {
-    border: 2px solid #19323c;
-    border-radius: 2px;
-    margin: auto;
-    margin: 8px 0 10px 10px;
-    width: 94%;
-    height: 160px;
-    display: flex;
-    color: #19323c;
-    text-align: justify;
+#check_form {
+    margin-left: -55px;
 }
-    .section img {
-        width: 65%;
-    }
-    .section h3, a {
-        font-size: 28px;
-        color: #19323c;
-        padding: 15px;
-        margin-top: 10px;
-    }
-    .section p {
-        line-height: 15px;
+
+table {
+    border-spacing: 15px;
+    padding: 0px 40px;
+}
+
+input {
+    width: 155px;
+}
+
+button {
+    margin: 15px 0 0 160px;
+    color: #d77a61;
+}
+
+#cart {
+    margin: 0;
+}
+    #cart h2 {
+        margin-top: -22px;
     }
 
+#cart-list {
+    margin-top: 12px;
+    border-spacing: 0;
+    padding: 0px;
+    font-size: 14px;
+}
+    #cart-list td {
+        padding: 5px 8px;
+    }
+    #cart-list tr:nth-child(even) {
+        background: #ecc8af;
+    }
+    #cart-list tr:nth-child(odd) {
+        background: #e7ad99;
+    }
+
+#total {
+    margin: 20px 0px 0px 230px;
+}
+
 #foot {
-    margin-top: 60px;
+    margin-top: 50px;
     color: #19323c;
     font-size: 11px;
     text-align: center;

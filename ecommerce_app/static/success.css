@@ -10,11 +10,11 @@
 }
 
 header {
-    width: 100%;
+    width: 93%;
     height: 35px;
     position: fixed;
     top: 0;
-    padding: 15px 160px 15px 0px;
+    padding: 15px 45px;
     display: flex;
     justify-content: space-between;
     color: white;
@@ -38,12 +38,15 @@ header {
         color: #ffaa6d;
     }
 
+    header h1 {
+        font-size: 40px;
+    }
+
     header a {
         color: white;
         font-size: 18px;
     }
 
-/* styling for logged in header */
 #bar {
     justify-content: space-between;
 }
@@ -51,35 +54,15 @@ header {
         display: inline-block;
         text-align: center;
         padding-left: 14px;
+        padding-top: 3px;
         margin: 4px;
         color: white;
         text-decoration: none;
     }
 
-#log-form {
-    display: none;
-    background-color: #f2f2f2;
-    width: 230px;
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    padding: 20px;
-    border-radius: 4px;
-    border: 1px solid #19323c;
-}
-    .log-input {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-
-    button {
-        padding: 1px 8px;
-        margin-left: 78px;
-    }
-
 #column {
     width: 70%;
+    height: 540px;
     margin: auto;
     margin-top: 65px;
     padding: 33px;
@@ -87,42 +70,43 @@ header {
     box-shadow: 10px -2px 6px -5px #424b4c, -10px -2px 6px -5px #424b4c;
 }
 
+.greeting {
+    margin: 20px 0 0 30px;
+    color: #d77a61;
+    font-size: 44px;
+}
+    
 #container {
-    width: 850px;
+    width: 800px;
     margin: auto;
-    padding: 10px 0px 10px 25px;
-    margin-bottom: 40px;
+    padding: 40px 0px 40px 25px;
+    margin-top: -14px;
+    text-align: center;
     border: 2px solid #19323c;
     border-radius: 2px;
     box-shadow: 8px 8px #334e58;
 }
-
-.section {
-    border: 2px solid #19323c;
-    border-radius: 2px;
-    margin: auto;
-    margin: 8px 0 10px 10px;
-    width: 94%;
-    height: 160px;
-    display: flex;
-    color: #19323c;
-    text-align: justify;
-}
-    .section img {
-        width: 65%;
+    #container h2 {
+        margin-bottom: 15px;
     }
-    .section h3, a {
-        font-size: 28px;
-        color: #19323c;
-        padding: 15px;
-        margin-top: 10px;
+    #container b {
+        color: #d77a61;
     }
-    .section p {
-        line-height: 15px;
+    .notice {
+        padding: 10px 200px;
+        text-align: justify;
     }
+    #container a {
+        padding: 0;
+        margin: 0;
+        color: #d77a61;
+    }
+        #container a:hover {
+            color: #ffaa6d;
+        }
 
 #foot {
-    margin-top: 60px;
+    margin-top: 90px;
     color: #19323c;
     font-size: 11px;
     text-align: center;

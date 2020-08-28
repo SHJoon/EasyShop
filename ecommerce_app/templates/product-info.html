@@ -44,16 +44,36 @@
             <div id="product-desc">
                 <div id="main-desc">
                 <h2>{{ this_product.name }}</h2>
-                <h4>${{ this_product.price }}</h4></div>
-                <div id="desc">
-                    <p>{{ this_product.description }}</p>
-                    <button>Add to Cart</button>
-                </div>
-                
+                <p>
+                    {% if avg_review == 1 %}
+                    <span>&#11088</span>
+                    {% elif avg_review == 2 %}
+                    <span>&#11088 &#11088</span>
+                    {% elif avg_review == 3 %}
+                    <span>&#11088 &#11088 &#11088</span>
+                    {% elif avg_review == 4 %}
+                    <span>&#11088 &#11088 &#11088 &#11088</span>
+                    {% elif avg_review == 5 %}
+                    <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
+                    {% endif %}
+                </p>
+                <p>${{ this_product.price }}</p>
+                <p>{{ this_product.description }}</p>
             </div>
         </div>
-        <div id="bottom">
-        <form id="review" action="" method=POST>
+        <form id="add_to_cart" action="/products/{{ category_id }}/{{ this_product.id }}/add_to_cart" method=POST>
+            {% csrf_token %}
+            <label for="quantity">Select Quantity:</label>
+            <select id="quantity" name="quantity">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+            </select>
+            <button>Add to Cart</button>
+        </form>
+
+        <form id="review" action="/products/{{ category_id }}/{{ this_product.id }}/review" method=POST>
+            {% csrf_token %}
             <select name="review_val">
                 <option value=1>&#11088 </option>
                 <option value=2>&#11088 &#11088</option>
@@ -61,8 +81,8 @@
                 <option value=4>&#11088 &#11088 &#11088 &#11088</option>
                 <option value=5>&#11088 &#11088 &#11088 &#11088 &#11088</option>
             </select>
-            <textarea id="review-detail" type="text" name="review">Tell us your thoughts!</textarea>
-            {% if user_id in request.session %}
+            <textarea id="review-detail" type="text" name="review" placeholder="Tell us your thoughts!"></textarea>
+            {% if is_logged_in %}
             <button>Submit Review</button> 
             {% else %}
             <p style="color:red">You must be logged in to leave a review!</p>
@@ -70,20 +90,23 @@
         </form>
         
         <ul>
-        {% for review in all_reviews %}
+        {% for review in this_product.reviews.all %}
             <li class="each-review">
-                <p>{{ review.user.first_name }} {{ review.user.last_name }}: {{ review.description }}</p>
-                {% if review.value == 1 %}
-                <p>&#11088</p>
-                {% elif review.value == 2 %}
-                <p>&#11088 &#11088</p>
-                {% elif review.value == 3 %}
-                <p>&#11088 &#11088 &#11088</p>
-                {% elif review.value == 4 %}
-                <p>&#11088 &#11088 &#11088 &#11088</p>
-                {% else %}
-                <p>&#11088 &#11088 &#11088 &#11088 &#11088</p>
-                {% endif %}
+                <p>
+                    {{ review.user.first_name }} {{ review.user.last_name }}
+                    {% if review.value == 1 %}
+                    <span>&#11088</span>
+                    {% elif review.value == 2 %}
+                    <span>&#11088 &#11088</span>
+                    {% elif review.value == 3 %}
+                    <span>&#11088 &#11088 &#11088</span>
+                    {% elif review.value == 4 %}
+                    <span>&#11088 &#11088 &#11088 &#11088</span>
+                    {% else %}
+                    <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
+                    {% endif %}
+                </p>
+                <p>{{ review.description }}</p>
             </li>
         {% empty %}
         <p>No reviews for this product yet!</p>

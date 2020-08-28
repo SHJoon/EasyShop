@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <!-- {% load static %}
+    {% load static %}
     <link rel="stylesheet" href="{% static 'login.css' %}"> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static 'project_script.js' %}"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="static/project_script.js"></script>
     <link rel="stylesheet" type="text/css" href="static/reg.css">
@@ -16,7 +14,7 @@
 </head>
 <div id="wrapper">
     <header id="bar">
-        <img src="images/pngwave.png">
+        <img src="static/images/pngwave.png">
         <ul>
             <li id="login"><a href="#" class="header-link">Log In</a></li>
         </ul>
@@ -25,7 +23,7 @@
     <body>
         <div id="log-form">
             <form action="" method="POST">
-                <!-- {% csrf_token %} -->
+                {% csrf_token %}
                 <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
                 <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
                 <button>Log In</button>
@@ -43,7 +41,7 @@
         {% endif %} -->
 
                 <form id="register" action='/register' method="POST">
-                    <!-- {% csrf_token %} -->
+                    {% csrf_token %}
                     <h2>Register:</h2>
                     <table>
                         <tr>

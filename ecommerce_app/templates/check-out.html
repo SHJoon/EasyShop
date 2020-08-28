@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Check Out Form</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Check Out</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="static/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
     <body>
-
+        <p>Total Charge: {{ total_sum }}</p>
         <h2>Check Out Form</h2>
         <div id="check_form">
-            <form action="" method="POST">
+            <form action="/cart/process" method="POST">
                 {% csrf_token %}
+                <input type="hidden" name="total_sum" value={{ total_sum }}>
                 <div><label>First Name:</label>
                     <input type="text" name="first_name">
                 </div>
@@ -26,20 +30,45 @@
                     <input type="text" name="address">
                 </div>
                 
-                <div><label>Card #:</label>
+                <div>
+                    <label>Card #:</label>
                     <input type="text" name="card_num">
+                    <label>Expiration:</label>
+                    <input type="text" name="exp">
+                    <label>CVV:</label>
+                    <input type="text" name="cvv">
                 </div>
-                
-                <div><label>Billing Address:</label>
-                    <textarea name="bill_address" cols='60' rows='1'></textarea>
+                <div id="cart">
+                    <h2>[user's name]'s Cart</h2>
+                    <table id="cart-list">
+                        <tr>
+                            <td>[item name]</td>
+                            <td>[item quantity]</td>
+                            <td>$[item total price]</td>
+                        </tr>
+                        <tr>
+                            <td>[item name]</td>
+                            <td>[item quantity]</td>
+                            <td>$[item total price]</td>
+                        </tr>
+                    </table>
+                    <!-- two rows shown just for previewing design -->
+                    <div id="total">
+                        <p>Order total: $$$</p>
+                    </div>
                 </div>
-                
-                <button>Proceed to Check Out</button>
-            </form>
-        </div>
-
-        <div id="your_cart">
-
+            </div>
+            <div id="foot">
+                <p>All Rights Reserved.</p>
+                <p>
+                    <a href="">FAQ</a> &#8226;
+                    <a href="">Privacy Policy</a> &#8226;
+                    <a href="">Contact Us</a>
+                </p>
+            </div>
         </div>
     </body>
+
+</div>
+
 </html>

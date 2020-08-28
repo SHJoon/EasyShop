@@ -5,10 +5,11 @@ from .models import *
 from .forms import ProductForm
 import bcrypt
 
+admin_id = [1,2,3]
 # Create your views here.
 def login_index(request):
 
-    return render(request, 'login.html')
+    return render(request, 'register.html')
 
 # Function to handle registration
 def register_user(request):
@@ -39,12 +40,12 @@ def register_user(request):
 
 # Functions for handling login
 def login_user(request):
-    user_list = User.objects.filter(email=request.POST['login_email'])
+    user_list = User.objects.filter(email=request.POST['email'])
     if len(user_list) == 0:
         messages.error(request, "Please check your email/password")
         return redirect("/login_index")
 
-    if not bcrypt.checkpw(request.POST['login_password'].encode(), user_list[0].password.encode()):
+    if not bcrypt.checkpw(request.POST['password'].encode(), user_list[0].password.encode()):
         print("failed password")
         messages.error(request, "Please check your email/password")
         return redirect("/login_index")
@@ -58,61 +59,141 @@ def logout(request):
 
 # Function to display the main page
 def homepage(request):
+    is_admin=False
+    if "user_id" in request.session:
+        if request.session["user_id"] in admin_id:
+            is_admin=True
     context = {
-        # "logged_in_user": User.objects.get(id=request.session['user_id']),
-        "all_categories": Category.objects.all()
-        
+        "all_categories": Category.objects.all(),
+        "is_admin": is_admin
     }
     return render(request, "homepage.html", context)
-
-# Function to display the shopping cart
-def view_cart(request):
-    context = {
-        "logged_in_user": User.objects.get(id=request.session['user_id'])
-    }
-    return render(request, "cart.html", context)
-
-def remove_from_cart(request, order_id):
-    logged_in_user = User.objects.get(id=request.session['user_id'])
-    order_to_remove = Order.objects.get(id=order_id)
-
-    logged_in_user.carts.remove(order_to_remove)
-
-    return redirect("/cart")
 
 def view_products(request, category_id):
     category = Category.objects.get(id=category_id)
     context = {
-        "all_products": category.products.all()
+        "category": category
     }
 
-    return render(request, "", context)
+    return render(request, "products.html", context)
 
-def view_product_info(request, product_id):
+def view_product_info(request, category_id, product_id):
     this_product = Product.objects.get(id=product_id)
+    try:
+        User.objects.get(id=request.session['user_id'])
+        is_logged_in = True
+    except:
+        is_logged_in = False
+    
+    sum = 0
+    if len(this_product.reviews.all()) != 0:
+        for review in this_product.reviews.all():
+            sum += review.value
+        avg_review = round((sum) / len(this_product.reviews.all()))
+    else:
+        avg_review = 0
+
     context={
         "this_product": this_product,
-        "all_reviews": this_product.reviews.all()
+        "avg_review": avg_review,
+        "is_logged_in": is_logged_in,
+        "category_id": category_id
     }
     return render(request, "product-info.html", context)
 
-def post_review(request):
-    logged_in_user: User.objects.get(id=request.session['user_id'])
-    
-    add_review = Review.objects.create(
-        user = current_user,
-        post = request.POST["post"]
+def post_review(request, category_id, product_id):    
+    Review.objects.create(
+        value = request.POST['review_val'],
+        description = request.POST['review'],
+        product = Product.objects.get(id=product_id),
+        user = User.objects.get(id=request.session['user_id'])
     )
-    return redirect("")
+    return redirect(f"/products/{category_id}z/{product_id}")
+
+def add_to_cart(request, category_id, product_id):
+    product = Product.objects.get(id=product_id)
+    total_price = float(request.POST['quantity']) * float(product.price)
+    Cart.objects.create(
+        quantity_in_cart = request.POST['quantity'],
+        total_price = total_price,
+        product = product,
+        user = User.objects.get(id=request.session['user_id']),
+    )
+    return redirect(f"/cart")
+
+def cart(request):
+    logged_user = User.objects.get(id=request.session['user_id'])
+    all_carts = Cart.objects.filter(user = logged_user)
+    total_sum = 0
+    for item in all_carts:
+        total_sum += item.total_price
+    context = {
+        "total_sum": total_sum,
+        "all_carts": all_carts
+    }
+
+    return render(request, "cart.html", context)
+
+def update_cart(request, cart_id):
+    cart = Cart.objects.get(id=cart_id)
+    cart.quantity_in_cart = request.POST["quantity"]
+    cart.total_price = float(cart.quantity_in_cart) * float(cart.product.price)
+
+    cart.save()
+
+    return redirect("/cart")
+
+def delete_cart(request, cart_id):
+    Cart.objects.get(id=cart_id).delete()
+
+    return redirect("/cart")
 
 
+def checkout(request):
+    all_carts = Cart.objects.all()
+    total_sum = 0
+    for item in all_carts:
+        total_sum += item.total_price
+    context = {
+        "total_sum": total_sum
+    }
 
+    return render(request, "check-out.html", context)
 
+def process(request):
+    logged_user = User.objects.get(id=request.session['user_id'])
+    cart = Cart.objects.filter(user = logged_user)
 
+    for item in cart:
+        Order.objects.create(
+            quantity_ordered = item.quantity_in_cart,
+            total_price = item.total_price,
+            purchased_user = logged_user,
+            purchased_product = item.product
+        )
+        item.delete()
 
+    return redirect(f"checkout/{this_order.id}")
 
+def order_comp(request, order_id):
+    this_order = Order.objects.get(id=order_id)
 
+    sum = 0
+    count = 0
 
+    all_orders = Order.objects.all()
+
+    for curr_order in all_orders:
+        sum += curr_order.total_price
+        count += curr_order.quantity_ordered
+
+    context ={
+        "total_charge": this_order.total_price,
+        "total_amadon_spent": sum,
+        "total_quantity_bought": count 
+    }
+
+    return render(request, "order-complete.html", context)
 
 
 
@@ -188,43 +269,3 @@ def admin_delete_product(request, product_id):
     Product.objects.get(id=product_id).delete()
 
     return redirect("/admin/products")
-
-
-def process(request):
-
-    product = Product.objects.get(id=int(request.POST["id"]))
-
-    quantity_from_form = int(request.POST["quantity"])
-    price_from_form = float(product.price)
-    total_charge = quantity_from_form * price_from_form
-    
-    print("Charging credit card...")
-    this_order = Order.objects.create(
-        quantity_ordered = quantity_from_form,
-        total_price = total_charge
-        )
-    
-    request.session["order_id"] = this_order.id
-
-    return redirect(f"checkout/{this_order.id}")
-
-
-def order_comp(request, order_id):
-    this_order = Order.objects.get(id=order_id)
-
-    sum = 0
-    count = 0
-
-    all_orders = Order.objects.all()
-
-    for curr_order in all_orders:
-        sum += curr_order.total_price
-        count += curr_order.quantity_ordered
-
-    context ={
-        "total_charge": this_order.total_price,
-        "total_amadon_spent": sum,
-        "total_quantity_bought": count 
-    }
-
-    return render(request, "order-complete.html", context)
