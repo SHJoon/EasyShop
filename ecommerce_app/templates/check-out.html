@@ -6,58 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Check Out</title>
-    <!-- {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}"> -->
-    <link rel="stylesheet" type="text/css" href="static/checkout.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'checkout.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="static/checkout.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
+<div id="wrapper">
+    <header id="bar">
+        <img src="static/images/pngwave.png" alt="logo">
+        <ul>
+            <li><a href="/" class="header-link">Home</a></li>
+            <li><a href="/logout" class="header-link">Log Out</a></li>
+            {% if is_admin %}
+            <li><a href="/admin" class="header-link">Admin Page</a></li>
+            {% endif %}
+        </ul>
+    </header>
+
     <body>
-        <p>Total Charge: {{ total_sum }}</p>
-        <h2>Check Out Form</h2>
-        <div id="check_form">
-            <form action="/cart/process" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="total_sum" value={{ total_sum }}>
-                <div><label>First Name:</label>
-                    <input type="text" name="first_name">
+        <div id="column">
+            <h1 class="greeting">Checkout</h1>
+            <div id="container">
+                <div id="checkout">
+                        <form action="/cart/process" method="POST">
+                            {% csrf_token %}
+                            <table id="form">
+                                <input type="hidden" name="total_sum" value={{ total_sum }}>
+                                <tr>
+                                    <td>First Name:</td>
+                                    <td><input type="text" name="first_name"></td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name:</td>
+                                    <td><input type="text" name="last_name"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Address:</label></td>
+                                    <td><input type="text" name="address"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Card #:</label></td>
+                                    <td><input type="text" name="card_num"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Expiration:</label></td>
+                                    <td><input type="text" name="exp"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>CVV:</label></td>
+                                    <td><input type="text" name="cvv"></td>
+                                </tr>
+                            </table>
+                            <button id="payment">Process Payment</button>
+                        </form>
                 </div>
 
-                <div><label>Last Name:</label>
-                    <input type="text" name="last_name">
-                </div>
-
-                <div><label>Address:</label>
-                    <input type="text" name="address">
-                </div>
-                
-                <div>
-                    <label>Card #:</label>
-                    <input type="text" name="card_num">
-                    <label>Expiration:</label>
-                    <input type="text" name="exp">
-                    <label>CVV:</label>
-                    <input type="text" name="cvv">
-                </div>
                 <div id="cart">
-                    <h2>[user's name]'s Cart</h2>
+                    <h2>{{ logged_user.first_name }}'s Cart</h2>
                     <table id="cart-list">
+                        {% for cart in all_carts %}
                         <tr>
-                            <td>[item name]</td>
-                            <td>[item quantity]</td>
-                            <td>$[item total price]</td>
+                            <td>{{ cart.product.name }}</td>
+                            <td id="update">
+                                <form id="quantity" method=POST action='/cart/update/{{cart.id}}'>
+                                    {% csrf_token %}
+                                    Quantity:<input type="number" name="quantity" value={{cart.quantity_in_cart}}>
+                                        <button>Update</button>
+                                </form>
+                            </td>
+                            <td><a href="/cart/remove/{{cart.id}}">Remove</a></td>
+                            <td>${{ cart.total_price }}</td>
                         </tr>
-                        <tr>
-                            <td>[item name]</td>
-                            <td>[item quantity]</td>
-                            <td>$[item total price]</td>
-                        </tr>
+                        {% endfor %}
                     </table>
-                    <!-- two rows shown just for previewing design -->
+                    
                     <div id="total">
-                        <p>Order total: $$$</p>
+                        <p>Order total: ${{ total_sum }}</p>
                     </div>
                 </div>
             </div>
+
             <div id="foot">
                 <p>All Rights Reserved.</p>
                 <p>
@@ -66,8 +94,13 @@
                     <a href="">Contact Us</a>
                 </p>
             </div>
+
+
+
+
         </div>
-    </body>
+    </div>
+</body>
 
 </div>
 
