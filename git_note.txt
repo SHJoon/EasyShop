@@ -31,8 +31,8 @@ OR,
 git add .
 OR, 
 
-git add {{ file_name }}  --> git add git_note.txt
 
+git add {{ file_name }}  --> git add git_note.txt
 
 git commit -m "Comment goes in here"
 
