@@ -68,6 +68,21 @@ class Review(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Cart(models.Model):
+    quantity_in_cart = models.IntegerField()
+    total_price = models.DecimalField(decimal_places=2, max_digits=5)
+
+    product = models.ForeignKey(
+        Product,
+        related_name = "cart",
+        on_delete=models.CASCADE
+    )
+    user = models.ForeignKey(
+        User,
+        related_name="carts",
+        on_delete=models.CASCADE
+    )
+
 class Order(models.Model):
     quantity_ordered = models.IntegerField()
     total_price = models.DecimalField(decimal_places=2, max_digits=5)
@@ -83,18 +98,3 @@ class Order(models.Model):
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
-
-class Cart(models.Model):
-    quantity_in_cart = models.IntegerField()
-    total_price = models.DecimalField(decimal_places=2, max_digits=5)
-
-    product = models.ForeignKey(
-        Product,
-        related_name = "cart",
-        on_delete=models.CASCADE
-    )
-    user = models.ForeignKey(
-        User,
-        related_name="carts",
-        on_delete=models.CASCADE
-    )
