@@ -133,6 +133,7 @@ def cart(request):
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     return render(request, "cart.html", context)
 
 def update_cart(request, cart_id):
@@ -140,6 +141,8 @@ def update_cart(request, cart_id):
     cart.quantity_in_cart = request.POST["quantity"]
     cart.total_price = float(cart.quantity_in_cart) * float(cart.product.price)
 =======
+=======
+>>>>>>> fea3421058608e32e49340c5ddd3acb76ab7929f
     return render(request, "indie-categ.html", context)
 
 def view_product_info(request, product_id):
@@ -147,7 +150,10 @@ def view_product_info(request, product_id):
         "this_product": Product.objects.get(id=product_id)
     }
     return render(request, "product-info.html", context)
+<<<<<<< HEAD
 >>>>>>> 8b91d19... added html link for some def in views.py
+=======
+>>>>>>> fea3421058608e32e49340c5ddd3acb76ab7929f
 
     cart.save()
 
