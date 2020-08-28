@@ -15,6 +15,7 @@ urlpatterns = [
     path('cart/update/<int:cart_id>', views.update_cart),
     path('cart/remove/<int:cart_id>', views.delete_cart),
     path('cart/checkout', views.checkout),
+    path('cart/process', views.process),
 
     # URLs for admin
     path('admin', views.admin),

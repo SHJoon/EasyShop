@@ -12,8 +12,9 @@
         <p>Total Charge: {{ total_sum }}</p>
         <h2>Check Out Form</h2>
         <div id="check_form">
-            <form action="" method="POST">
+            <form action="/cart/process" method="POST">
                 {% csrf_token %}
+                <input type="hidden" name="total_sum" value={{ total_sum }}>
                 <div><label>First Name:</label>
                     <input type="text" name="first_name">
                 </div>
