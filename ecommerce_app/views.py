@@ -163,8 +163,9 @@ def checkout(request):
 def process(request):
     logged_user = User.objects.get(id=request.session['user_id'])
     cart = Cart.objects.filter(user = logged_user)
-
+    count = 0
     for item in cart:
+        count += item.quantity_in_cart
         Order.objects.create(
             quantity_ordered = item.quantity_in_cart,
             total_price = item.total_price,
@@ -172,8 +173,14 @@ def process(request):
             purchased_product = item.product
         )
         item.delete()
+    request.session['count'] = count
+    return redirect(f"/cart/success")
 
-    return redirect(f"checkout/{this_order.id}")
+def success(request):
+    context={
+        'num_items': request.session['count']
+    }
+    return render(request, "checkout-success.html", context)
 
 def order_comp(request, order_id):
     this_order = Order.objects.get(id=order_id)

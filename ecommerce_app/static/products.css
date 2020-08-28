@@ -93,10 +93,8 @@ header {
     margin: auto;
     padding: 10px 0px 15px 25px;
     margin-bottom: 20px;
-    /* text-align: center; */
     border: 2px solid #19323c;
     border-radius: 2px;
-    /* box-shadow: 8px 8px #334e58; */
 }
     #title h1 {
         color: #d77a61;
@@ -106,13 +104,13 @@ header {
 #container {
     width: 850px;
     margin: auto;
-    /* padding: 20px 0px 20px 25px; */
     margin-bottom: 40px;
+    margin-left: 18px;
     display: inline-block;
-    /* justify-content: center; */
     border: 2px solid #19323c;
     border-radius: 2px;
     box-shadow: 8px 8px #334e58;
+    background: green;
 }
 
 .row {
@@ -131,25 +129,8 @@ header {
         opacity: 1;
     }
 
-    .fade {
-        display: none;
-        opacity: .5;
-        background: white;
-        height: 320px;
-    }
-        .fade a {
-            font-family: Lora;
-            font-size: 20px;
-            color: black;
-            margin: 140px 0px 0px 44px;
-        }
-
-        .fade a:hover {
-            color: #ffaa6d;
-        }
-
 .item-desc {
-    width: 92%;
+    width: 94%;
     background: #334e58;
     color: white;
     padding: 8px;
