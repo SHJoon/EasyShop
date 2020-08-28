@@ -82,7 +82,7 @@
                 <option value=5>&#11088 &#11088 &#11088 &#11088 &#11088</option>
             </select>
             <textarea id="review-detail" type="text" name="review" placeholder="Tell us your thoughts!"></textarea>
-            {% if user_id in request.session %}
+            {% if is_logged_in %}
             <button>Submit Review</button> 
             {% else %}
             <p style="color:red">You must be logged in to leave a review!</p>
