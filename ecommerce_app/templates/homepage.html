@@ -42,15 +42,19 @@
     </div>
     <div id="column">
         <div id="container">
+            {% if is_admin %}
+            <a href="/admin">Admin Page</a>
+            {% endif %}
+            <div id="category-list">
+                {% for category in all_categories %}
                 <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <h3><a href="">Section title</a></h3>
+                    <img src="{{ category.products.first.img.url }}" alt="{{ category.category }}">
+                    <div class="desc">
+                        <h3><a href="/products/{{ category.id }}">{{ category.category }}</a></h3>
+                    </div>
                 </div>
-                <div class="section">
-                    <img src="static/images/image.png" alt="section-img">
-                    <h3><a href="">Section title</a></h3>
-                </div>
-            
+                {% endfor %}
+            </div>
         </div>
     </div>
     
