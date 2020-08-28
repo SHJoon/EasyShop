@@ -14,15 +14,15 @@
 </head>
 <div id="wrapper">
     <header id="bar">
-        <img src="static/images/pngwave.png">
+        <img src="/static/images/pngwave.png">
         <ul>
-            <li id="login"><a href="#" class="header-link">Log In</a></li>
+            <li id="login"><a href="/login" class="header-link">Log In</a></li>
         </ul>
     </header>
 
     <body>
         <div id="log-form">
-            <form action="" method="POST">
+            <form action="/login" method="POST">
                 {% csrf_token %}
                 <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
                 <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
@@ -30,16 +30,15 @@
             </form>
         </div>
         <div id="column">
+            {% if messages %}
+                <ul>    
+                    {% for message in messages %}    
+                        <li class="messages" style="color: red">{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
             <h1 class="greeting" id="welcome">Welcome!</h1>
             <div id="container">
-                <!-- {% if messages %}
-        <ul>    
-            {% for message in messages %}    
-                <li class="messages" style="color: red">{{ message }}</li>    
-            {% endfor %}
-        </ul>
-        {% endif %} -->
-
                 <form id="register" action='/register' method="POST">
                     {% csrf_token %}
                     <h2>Register:</h2>
