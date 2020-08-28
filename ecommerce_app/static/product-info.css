@@ -99,10 +99,11 @@ header {
 }
 
 #product-img {
-    width: 30%;
+    width: 40%;
     border: 2px solid #19323c;
     border-radius: 2px;
     padding: 4px;
+    margin-left: 40px;
 }
 
 #product-info {
@@ -115,7 +116,7 @@ header {
 }
     #product-desc h2 {
         font-size: 38px;
-        margin: 0px 80px 5px 0px;
+        margin: 0px 80px 0px 0px;
     }
 
     #product-desc h4 {
@@ -124,12 +125,26 @@ header {
         font-size: 18px;
     }
 
+    #top-desc {
+        display: flex;
+        justify-content: space-between;
+    }
+        #stars {
+            margin: 0px;
+            padding: 0;
+            font-size: 25px;
+        }
+
     #desc {
-        width: 100%;
-        height: 200px;
+        width: 90%;
+        height: 300px;
         border: 2px solid #19323c;
         border-radius: 2px;
         padding: 6px 15px;
+    }
+
+    #desc select {
+        width: 10%;
     }
 
     #desc button {
@@ -141,12 +156,17 @@ header {
     display: flex;
 }
 
+#add_to_cart {
+    position: relative;
+    bottom: 0;
+}
+
 #bottom {
-    width: 87%;
+    width: 80%;
     height: 200px;
     border: 2px solid #19323c;
     border-radius: 2px;
-    margin: 40px 10px 0px 10px;
+    margin: 40px 10px 0px 40px;
     padding: 25px;
     display: flex;
 }
@@ -155,7 +175,7 @@ header {
     display: block;
 }
     select {
-        width: 80%;
+        width: 79%;
         margin-bottom: 15px;
         padding: 2px;
     }
@@ -168,6 +188,10 @@ header {
         margin-bottom: 10px;
     }
 
-ul {
+#review-list {
     margin: 0px 40px;
+    width: 50%;
 }
+    .each-review span {
+        margin-left: 8px;
+    }

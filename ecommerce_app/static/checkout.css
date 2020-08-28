@@ -101,7 +101,7 @@ header {
 #container {
     width: 800px;
     margin: auto;
-    padding: 40px 0px;
+    padding: 40px 20px;
     margin-top: -13px;
     display: flex;
     justify-content: center;
@@ -110,11 +110,11 @@ header {
     box-shadow: 8px 8px #334e58;
 }
 
-#check_form {
+#checkout {
     margin-left: -55px;
 }
 
-table {
+#form {
     border-spacing: 15px;
     padding: 0px 40px;
 }
@@ -140,9 +140,10 @@ button {
     border-spacing: 0;
     padding: 0px;
     font-size: 14px;
+    text-align: center;
 }
     #cart-list td {
-        padding: 5px 8px;
+        padding: 0 10px;
     }
     #cart-list tr:nth-child(even) {
         background: #ecc8af;
@@ -150,9 +151,19 @@ button {
     #cart-list tr:nth-child(odd) {
         background: #e7ad99;
     }
+#update {
+    display: flex;
+}
+    #update button {
+        position: absolute;
+        top: 2px;
+    }
+#quantity input {
+    width: 20px;
+}
 
 #total {
-    margin: 20px 0px 0px 230px;
+    margin: 20px 0px 0px 310px;
 }
 
 #foot {
