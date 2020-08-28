@@ -8,7 +8,7 @@
     <title>Check Out</title>
     <!-- {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}"> -->
-    <link rel="stylesheet" type="text/css" href="ecommerce_app/static/checkout.css">
+    <link rel="stylesheet" type="text/css" href="static/checkout.css">
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
@@ -22,51 +22,36 @@
 
     <body>
         <div id="column">
+            <h1 class="greeting">Checkout</h1>
             <div id="container">
                 <div id="checkout">
-                    <h2>Check Out Form</h2>
                     <div id="check_form">
                         <form action="" method="POST">
                             <!-- {% csrf_token %} -->
-                            <!-- <div><label>First Name:</label>
-                                <input type="text" name="first_name">
-                            </div>
-
-                            <div><label>Last Name:</label>
-                                <input type="text" name="last_name">
-                            </div>
-
-                            <div><label>Address:</label>
-                                <input type="text" name="address">
-                            </div>
-
-                            <div><label>Card #:</label>
-                                <input type="text" name="card_num">
-                            </div>
-
-                            <div><label>Billing Address:</label>
-                                <textarea name="bill_address" cols='60' rows='1'></textarea>
-                            </div> -->
-                            <table>
+                            <table id="form">
                                 <tr>
                                     <td>First Name:</td>
-                                    <td><input type="text" name="registered_first_name"></td>
+                                    <td><input type="text" name=""></td>
                                 </tr>
                                 <tr>
                                     <td>Last Name:</td>
-                                    <td><input type="text" name="registered_last_name"></td>
+                                    <td><input type="text" name=""></td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
-                                    <td><input type="text" name="registered_email"></td>
+                                    <td><input type="text" name=""></td>
                                 </tr>
                                 <tr>
-                                    <td>Password:</td>
-                                    <td><input type="password" name="registered_password"></td>
+                                    <td>Card Number:</td>
+                                    <td><input type="text" name=""></td>
                                 </tr>
                                 <tr>
-                                    <td>Confirm Password:</td>
-                                    <td><input type="password" name="registered_confirm_pw"></td>
+                                    <td>Shipping Address:</td>
+                                    <td><textarea></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>Billing Address:</td>
+                                    <td><textarea></textarea></td>
                                 </tr>
                             </table>
                             <button>Submit Order</button>
@@ -74,7 +59,23 @@
                     </div>
                 </div>
                 <div id="cart">
-                    <!-- cart layout here -->
+                    <h2>[user's name]'s Cart</h2>
+                    <table id="cart-list">
+                        <tr>
+                            <td>[item name]</td>
+                            <td>[item quantity]</td>
+                            <td>$[item total price]</td>
+                        </tr>
+                        <tr>
+                            <td>[item name]</td>
+                            <td>[item quantity]</td>
+                            <td>$[item total price]</td>
+                        </tr>
+                    </table>
+                    <!-- two rows shown just for previewing design -->
+                    <div id="total">
+                        <p>Order total: $$$</p>
+                    </div>
                 </div>
             </div>
             <div id="foot">
