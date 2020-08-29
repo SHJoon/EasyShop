@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,7 @@
 <div id="wrapper">
     {%if is_logged_in %}
     <header id="bar">
-        <img src="static/images/pngwave.png" alt="logo">
+        <img src="/static/images/pngwave.png">
         <ul>
             <li><a href="/" class="header-link">Home</a></li>
             <li><a href="/cart" class="header-link">View Cart</a></li>
@@ -26,129 +25,14 @@
     </header>
     {% else %}
     <header id="bar">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <img src="static/images/pngwave.png" alt="logo">
-=======
         <img src="/static/images/pngwave.png">
->>>>>>> Changed some functionality of the website
-=======
-        <img src="/static/images/pngwave.png">
->>>>>>> bd3c9ee72dcc3202231371d32fea541ee1878cbc
         <ul>
             <li><a href="/login_index" class="header-link">Register</a></li>
             <li id="login"><a href="#" class="header-link">Log In</a></li>
         </ul>
     </header>
     {% endif %}
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-    <body>
-        <div id="log-form">
-            <form action="/login" method="POST">
-                {% csrf_token %}
-                <div class="log-input"><label>Email:</label> <input type="text" name="email"></div>
-                <div class="log-input"><label>Password:</label> <input type="password" name="password"></div>
-                <button>Log In</button>
-            </form>
-        </div>
-        <div id="column">
-            <div id="container">
-                <!-- push submit button to post a review -->
-                <div id="product-info">
-                    <img src="{{ this_product.img.url }}" alt='product-pic' id="product-img">
-                    <div id="product-desc">
-                        <h2>{{ this_product.name }}</h2>
-                            <div id="top-desc">
-                                <div id="stars">
-                                    {% if avg_review == 1 %}
-                                    <span>&#11088</span>
-                                    {% elif avg_review == 2 %}
-                                    <span>&#11088 &#11088</span>
-                                    {% elif avg_review == 3 %}
-                                    <span>&#11088 &#11088 &#11088</span>
-                                    {% elif avg_review == 4 %}
-                                    <span>&#11088 &#11088 &#11088 &#11088</span>
-                                    {% elif avg_review == 5 %}
-                                    <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
-                                    {% endif %}
-                                </div>
-                                <h4>${{ this_product.price }}</h4>
-                            </div>
-                        <div id="desc">
-                            <p>{{ this_product.description }}</p>
-                            <form id="add_to_cart"
-                                action="/products/{{ category_id }}/{{ this_product.id }}/add_to_cart" method=POST>
-                                {% csrf_token %}
-                                <label for="quantity">Quantity:</label>
-                                <select id="quantity" name="quantity">
-                                    <option value=1>1</option>
-                                    <option value=2>2</option>
-                                    <option value=3>3</option>
-                                </select>
-                                <button>Add to Cart</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-=======
->>>>>>> bd3c9ee72dcc3202231371d32fea541ee1878cbc
-
-                <div id="bottom">
-                    <form id="review" action="/products/{{ category_id }}/{{ this_product.id }}/review" method=POST>
-                        {% csrf_token %}
-                        <select name="review_val">
-                            <option value=1>&#11088 </option>
-                            <option value=2>&#11088 &#11088</option>
-                            <option value=3>&#11088 &#11088 &#11088</option>
-                            <option value=4>&#11088 &#11088 &#11088 &#11088</option>
-                            <option value=5>&#11088 &#11088 &#11088 &#11088 &#11088</option>
-                        </select>
-                        <textarea id="review-detail" type="text" name="review"
-                            placeholder="Tell us your thoughts!"></textarea>
-                        {% if is_logged_in %}
-                        <button>Submit Review</button>
-                        {% else %}
-                        <p style="color:red">You must be logged in to leave a review!</p>
-                        {% endif %}
-                    </form>
-
-                    <ul id="review-list">
-                        {% for review in this_product.reviews.all %}
-                        <li class="each-review">
-                            <p>
-                                {{ review.user.first_name }} {{ review.user.last_name }}
-                                {% if review.value == 1 %}
-                                <span>&#11088</span>
-                                {% elif review.value == 2 %}
-                                <span>&#11088 &#11088</span>
-                                {% elif review.value == 3 %}
-                                <span>&#11088 &#11088 &#11088</span>
-                                {% elif review.value == 4 %}
-                                <span>&#11088 &#11088 &#11088 &#11088</span>
-                                {% else %}
-                                <span>&#11088 &#11088 &#11088 &#11088 &#11088</span>
-                                {% endif %}
-                            </p>
-                            <p>{{ review.description }}
-                            {% if is_logged_in and request.session.user_id == review.user.id %}
-                            <a href="/products/{{category_id}}/{{this_product.id}}/review/{{review.id}}/delete"
-                                id="delete">Delete</a></p>
-                            {% endif %}
-                        </li>
-                        {% empty %}
-                        <p>No reviews for this product yet!</p>
-                        {% endfor %}
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </body>
-
-</html>
-=======
 <body>
     <div id="log-form">
         <form action="/login" method="POST">
@@ -247,4 +131,3 @@
 </div>
 </body>
 </html>
->>>>>>> Changed some functionality of the website

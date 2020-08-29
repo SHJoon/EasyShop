@@ -8,7 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'home.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static 'project_script.js' %}"></script>
+    <script src="static/project_script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
@@ -26,15 +26,7 @@
     </header>
     {% else %}
     <header id="bar">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <img src="static/images/pngwave.png" alt="logo">
-=======
         <img src="static/images/pngwave.png">
->>>>>>> Changed some functionality of the website
-=======
-        <img src="static/images/pngwave.png">
->>>>>>> bd3c9ee72dcc3202231371d32fea541ee1878cbc
         <ul>
             <li><a href="/login_index" class="header-link">Register</a></li>
             <li id="login"><a href="#" class="header-link">Log In</a></li>
@@ -55,8 +47,8 @@
         <div id="container">
             <div id="category-list">
                 {% for category in all_categories %}
-                <div class="section" style="background-image: url(/static/images/cover_{{category.category|lower}}.jpg);">
-                    <!-- <img src="{{ category.products.first.img.url }}" alt="{{ category.category }}"> -->
+                <div class="section">
+                    <img src="{{ category.products.first.img.url }}" alt="{{ category.category }}">
                     <div class="desc">
                         <h3><a href="/products/{{ category.id }}">{{ category.category }}</a></h3>
                     </div>

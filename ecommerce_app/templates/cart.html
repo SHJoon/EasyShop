@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        {% for cart in all_carts %}
+        <div class="each-item">
+            <img src={{ cart.product.img.url }} alt="product-img">
+            <p>{{ cart.product.name }}</p>
+            <p>${{ cart.total_price }}</p>
+            <form method=POST action='/cart/update/{{cart.id}}'>
+                {% csrf_token %}
+                <p>Quantity:<input type="number" name="quantity" value={{cart.quantity_in_cart}}></p>
+                <button>Update quantity</button>
+            </form>
+            <a href="/cart/remove/{{cart.id}}">Remove</a>
+        </div>
+        {% endfor %}
+        <p>Total: ${{ total_sum }}</p>
+        <a href="/cart/checkout">Checkout</a>
+    </div>
+</body>
+</html>
