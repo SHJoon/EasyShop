@@ -5,7 +5,7 @@ from .models import *
 from .forms import ProductForm
 import bcrypt
 
-admin_id = [1,2,3]
+admin_id = [1,4,5]
 # Create your views here.
 def login_index(request):
 
